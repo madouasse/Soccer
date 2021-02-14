@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Yellowtail&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
 .App {
   text-align: center;
 }
@@ -14,7 +18,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background: black;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -27,6 +31,288 @@
 .App-link {
   color: #61dafb;
 }
+.backGround {
+  background: black;
+}
+
+.TitreSoccer{
+  font-family: 'Lobster', cursive;
+  font-size: 140px;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: white;
+  color: rgba(255, 255, 255, 0);
+  transition: all 1200ms ease;
+  width: 50%;
+  margin: auto;
+  cursor: pointer;
+}
+.TitreSoccer:hover {
+  color: rgba(255, 255, 255, 1);
+  height: 70%;
+}
+.TitreSoccerRemplissage{
+  transition: all 4s linear 2s;
+  width: 50%;
+  margin: auto;
+  height: 0;
+}
+.TitreSoccerRemplissage:hover {
+  height: 100%;
+}
+
+.TitreTricot{
+  font-family: 'Dancing Script', cursive;
+  width: 50%;
+  font-size: 140px;
+  text-shadow:0 0 2px #D000FE,0 0 30px #D000FE,0px 0px 5px #D000FE, 0 0 150px #D000FE;color:#D000FE;
+  color: rgba(255, 255, 255, 0);
+  transition: all 600ms ease;
+  width: 50%;
+  margin: auto;  transition: all 500ms ease;
+  cursor: pointer;
+
+}
+.TitreTricot:hover {
+  color: rgb(61, 149, 231);
+  text-shadow:0 0 6px rgb(61, 149, 231),0 0 50px rgb(61, 149, 231),0px 0px 8px rgb(61, 149, 231), 0 0 180px rgb(61, 149, 231);color:rgb(61, 149, 231);
+  height: 70%;
+}
+.indexChoice{
+  display: flex;
+  width: 100%;
+}
+.logoIndexSoccer{
+  width: 20%;
+}
+.logoIndexTricot{
+  width:40%;
+}
+
+.loggoAndTitre{
+  width: 100%;
+}
+
+.soccerPageOne{
+  font-family: 'Lobster', cursive;
+  flex: auto;
+  height: 100%;
+  width: 100%;
+  background-image: url(./img/soccerWall.jpg);
+  background-size: cover;
+}
+
+
+.login
+{
+  width:35%;
+  align-items: middle;  
+  display:flex ;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 5%;
+}
+
+.Boutton
+{
+  margin: auto;
+  align-items: middle;  
+  display:flex ;
+}
+
+.titreId{
+  font-size: 28px;
+  margin: auto;
+}
+
+.UserMdp
+{
+  display:flex ;
+  flex-direction: column;
+}
+
+.IdMdp
+{
+  display:flex ;
+  flex-direction: row;
+}
+.id{
+  margin: auto;
+}
+.Mdp{
+  margin: auto;
+  margin-right: 2px;
+}
+
+
+
+
+.button2 {
+  font-family: 'Lobster', cursive;
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 10px;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  outline: none;
+  color: #fff;
+  background-color: #e05ce0;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button2:hover {background-color: #3e8e41}
+
+.button2:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+#button {
+  font-family: 'Lobster', cursive;
+  background: #222;
+  height: 50px;
+  min-width: 150px;
+  border: none;
+  border-radius: 10px;
+  color: #eee;
+  font-size: 40px;
+  font-family: 'Cookie', cursive;
+  position: relative;
+  transition: 1s;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding-top: 5px;
+}
+
+.noselect {
+  font-family: 'Lobster', cursive;
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+#button #circle {
+  width: 5px;
+  height: 5px;
+  background: transparent;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  overflow: hidden;
+  transition: 500ms;
+}
+#button:hover {
+  background: transparent;
+}
+
+#button:hover #circle {
+  height: 50px;
+  width: 150px;
+  left: 0;
+  border-radius: 0;
+  border-bottom: 2px solid #eee;
+}
+
+.creer-btn {
+  margin-left: 10px;
+  margin-top: 10px;
+  width: 15%;
+  font-family: Hack, monospace;
+  background: #3decec;
+  color: #1d1d1d;
+  cursor: pointer;
+  font-size: 25px;
+  padding: 1.0rem;
+  border: 0;
+  transition: all 0.5s;
+  border-radius: 10px;
+  width: auto;
+  position: relative;
+}
+.creer-btn::after {
+  background-image: url(./img/f2f6.png);
+  font-family: "Font Awesome 5 Pro";
+  font-weight: 400;
+  position: absolute;
+  left: 80%;
+  top: 54%;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  background: black;
+}
+  .creer-btn:hover {
+      background: #e2463a;
+      transition: all 0.5s;
+      border-radius: 10px;
+      box-shadow: 0px 6px 15px #f50d0561;
+      padding: 1.5rem 3rem 1.5rem 1.5rem;
+      color: #ffffff;
+
+  }
+  .creer-btn::after {
+    opacity: 1;
+    transition: all 0.5s;
+    color: #ffffff;
+}
+
+.login-btn {
+  margin-right: 10px;
+  margin-top: 10px;
+  width: 15%;
+  font-family: Hack, monospace;
+  background: #bbff00;
+  color: #1d1d1d;
+  cursor: pointer;
+  font-size: 25px;
+  padding: 1.0rem;
+  border: 0;
+  transition: all 0.5s;
+  border-radius: 10px;
+  width: auto;
+  position: relative;
+}
+.login-btn::after {
+  background-image: url(./img/f2f6.png);
+  font-family: "Font Awesome 5 Pro";
+  font-weight: 400;
+  position: absolute;
+  left: 80%;
+  top: 54%;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  background: black;
+}
+  .login-btn:hover {
+      background: #2b2bff;
+      transition: all 0.5s;
+      border-radius: 10px;
+      box-shadow: 0px 6px 15px #0000ff61;
+      padding: 1.5rem 3rem 1.5rem 1.5rem;
+      color: #ffffff;
+
+  }
+  .login-btn::after {
+    opacity: 1;
+    transition: all 0.5s;
+    color: #ffffff;
+}
+
+
 
 @keyframes App-logo-spin {
   from {

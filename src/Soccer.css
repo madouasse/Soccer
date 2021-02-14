@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Yellowtail&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@700&display=swap');
+
+.soccerPage
+{
+display: flex;
+flex: auto;
+width: 100%;
+}
+.vestiaire
+{
+width: 100%;
+background-image: url(./img/vestiaireImg2.jpg);
+background-size: cover;
+font-family: 'Yellowtail', cursive;
+font-size: 100px;
+text-shadow:0 0 2px #D000FE,0 0 30px #D000FE,0px 0px 5px #D000FE, 0 0 150px #D000FE;color:#D000FE;
+color: rgba(255, 255, 255, 0);
+transition: all 600ms ease;
+transition: all 500ms ease;
+cursor: pointer;
+}
+.vestiaire:hover {
+    color: rgb(61, 149, 231);
+    text-shadow:0 0 6px rgb(61, 149, 231),0 0 50px rgb(61, 149, 231),0px 0px 8px rgb(61, 149, 231), 0 0 180px rgb(61, 149, 231);color:rgb(61, 149, 231);
+  }
+.terrain
+{
+width: 100%;
+background-image: url(./img/soccerTerrain.jpg) ;
+background-size: cover;
+background-position: center;
+font-family: 'Permanent Marker', cursive;
+font-size: 100px;
+text-shadow:0 0 2px #186363,0 0 30px #186363,0px 0px 5px #186363, 0 0 150px #186363;color:#186363;
+color: rgba(255, 255, 255, 0);
+transition: all 600ms ease;
+cursor: pointer;
+}
+.terrain:hover {
+    color: rgb(61, 149, 231);
+    text-shadow:0 0 6px #42e66b,0 0 50px  #42e66b,0px 0px 8px #42e66b, 0 0 180px  #42e66b;color: #42e66b;
+  }
+.bus
+{
+    font-family: 'Amatic SC', cursive;
+    width: 100%;
+    background-image: url(./img/superBus2.jpg);
+    background-size: cover;
+    font-size: 100px;
+    text-shadow:0 0 2px #f8fc02,0 0 30px #f8fc02,0px 0px 5px #f8fc02, 0 0 150px #f8fc02;color:#f8fc02;
+    color: rgba(255, 255, 255, 0);
+    transition: all 600ms ease;
+    cursor: pointer;
+
+}
+.bus:hover {
+    text-shadow:0 0 6px rgb(241, 63, 63),0 0 50px rgb(241, 63, 63),0px 0px 8px rgb(241, 63, 63), 0 0 180px rgb(241, 63, 63);
+    color:rgb(241, 63, 63);
+}
+.vestiairePage{
+  width: 100%;
+  background-image: url(./img/vestiaireImg2.jpg) ;
+  background-size: cover;
+  background-position: center;
+}
+.JouersVestiaire{
+  font-family: 'Permanent Marker', cursive;
+  color: #ffffff;
+  font-size: 50px;
+  float: left;
+  margin-left:30px;
+  margin-top: 15px;
+  margin-right: 20px;
+}
+
+.vestiaireNeon
+{
+font-family: 'Yellowtail', cursive;
+font-size: 100px;
+text-shadow:0 0 2px #D000FE,0 0 30px #D000FE,0px 0px 5px #D000FE, 0 0 150px #D000FE;color:#D000FE;
+color: rgba(255, 255, 255, 0);
+transition: all 600ms ease;
+transition: all 500ms ease;
+cursor: pointer;
+}
+.vestiaireNeon:hover {
+    color: rgb(61, 149, 231);
+    text-shadow:0 0 6px rgb(61, 149, 231),0 0 50px rgb(61, 149, 231),0px 0px 8px rgb(61, 149, 231), 0 0 180px rgb(61, 149, 231);color:rgb(61, 149, 231);
+}
+.TableJours{
+  margin:auto
+}
+.Table{
+  table-layout: auto;
+  width: 75%;
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.418);
+  font-family: 'Merienda', cursive;
+  color: #00aefe;
+}
+.joueur{
+  cursor: pointer;
+  background-color: rgba(158, 216, 24, 0.219);
+  color: crimson;
+}
+.joueurElse{
+  color: crimson;
+  background-color: rgba(24, 216, 174, 0.219);
+  cursor: pointer;
+}
+.joueurElseValid {
+  cursor: pointer;
+  color: rgb(39, 248, 11);
+  background-color: rgba(24, 216, 174, 0.219);
+}
+.headPlayer{
+  width: 50%;
+}
+.headPlayerCell{
+  width: 10%;
+}
