@@ -18,22 +18,78 @@ const useStyles = makeStyles({
   });
 
 
-const Soccer = () => (
+  class Soccer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.onClickNext = this.onClickNext.bind(this);
+        this.tableDesJoueurs = this.tableDesJoueurs.bind(this);
+        this.valideOuNon = this.valideOuNon.bind(this);
+        this.state = { 
+          page: "Acceuil", 
+          statJouerTotal: null,
+        };
+      }
+
+      onClickNext (newPage)
+      {
+          if(newPage == "vestiaire")
+          {
+              this.tableDesJoueurs(lesJoueurs)
+          }
+          page=newPage
+      }
+      
+      tableDesJoueurs(joueursList)
+      {
+        for(var i=0 ;i < Object.keys(joueursList).length; i++)
+        {
+          var iu = Object.values(joueursList)[i];
+          iu = Object.values(iu);
+          Listjoueur[i] = Object.keys(joueursList)[i];
+          statJouer = [];
+          for (var u = 0; u<iu.length; u++)
+              {
+                  statJouer[u]=iu[u];
+              }
+              statJouerTotal[i] = [statJouer]
+              TotalInfoJoueurs[i] = [Listjoueur[i], ... statJouer]   
+          }
+      }
+      
+      valideOuNon(level)
+      {
+          if(!validation)
+          {
+              console.log(document.getElementById(level+"slip"),"valideOuNon !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+              document.getElementById(level+"slip").setAttribute("class" ,"joueurElseValid");
+              validation = true;
+          }
+          else
+          {
+              document.getElementById(level+"slip").setAttribute("class" ,"joueur");
+              validation = false;
+          }
+          
+      }
+
+      render() {
+        return(
         <div className="soccerPage">
-            {page=="Acceuil" && ( <div className='vestiaire' onClick={() => onClickNext("vestiaire") }>Vestiaire</div>)}
-            {page=="Acceuil" && (<div className="terrain" onClick={() => onClickNext("terrain")}>Terrain</div>)}
-            {page=="Acceuil" && (<div className="bus" onClick={() => onClickNext("bus")}>Bus</div>)}
-            {page == "vestiaire" && (
+                {console.log( "ploufploufpique")}
+            {this.state.page=="Acceuil" && ( <div className='vestiaire' onClick={() => this.onClickNext("vestiaire") }>Vestiaire</div>)}
+            {this.state.page=="Acceuil" && (<div className="terrain" onClick={() => this.onClickNext("terrain")}>Terrain</div>)}
+            {this.state.page=="Acceuil" && (<div className="bus" onClick={() => this.onClickNext("bus")}>Bus</div>)}
+            {this.state.page == "vestiaire" && (
             <div className="vestiairePage">
                 <div className="vestiaireNeon">
-                    vestiaire
+                    Vestiaire
                 </div>
                 <div id= "slip" className="JouersVestiaire">Joueurs </div>
                 <table className="Table">
                     <thead >
                         <tr className='TableJours'>
                             <th className= "headPlayerCell"></th>
-                            <th onClick={()=>onClickNext("bite")}>Joueurs</th>
+                            <th onClick={()=>this.onClickNext("bite")}>Joueurs</th>
                             <th>But</th>
                             <th>Match Gagné</th>
                             <th>Match Perdu</th>
@@ -42,7 +98,7 @@ const Soccer = () => (
                     </thead>
                     <tbody>
                     {[... statJouerTotal.keys()].map((level) => (
-                    <tr className="joueur" id={level+"slip"} onClick={()=>valideOuNon(level)}>
+                    <tr className="joueur" id={level+"slip"} onClick={()=>this.alideOuNon(level)}>
                     {validation == true &&
                         (<BigHead id={level+"slip8"} className= "headPlayer"></BigHead>)}  
                     {[... TotalInfoJoueurs[level].keys()].map((row) => (
@@ -54,53 +110,12 @@ const Soccer = () => (
                 </table>
               </div>)}
         </div>    
-        );
-function onClickNext (newPage)
-{
-    if(newPage == "vestiaire")
-    {
-        tableDesJoueurs(lesJoueurs)
-    }
-    page=newPage
-}
+    )}}
 
-function tableDesJoueurs(joueursList)
-{
-  for(var i=0 ;i < Object.keys(joueursList).length; i++)
-  {
-    var iu = Object.values(joueursList)[i];
-    iu = Object.values(iu);
-    Listjoueur[i] = Object.keys(joueursList)[i];
-    statJouer = [];
-    for (var u = 0; u<iu.length; u++)
-        {
-            statJouer[u]=iu[u];
-        }
-        statJouerTotal[i] = [statJouer]
-        TotalInfoJoueurs[i] = [Listjoueur[i], ... statJouer]   
-    }
-}
-
-function valideOuNon(level)
-{
-    if(!validation)
-    {
-        console.log(document.getElementById(level+"slip"),"valideOuNon !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        document.getElementById(level+"slip").setAttribute("class" ,"joueurElseValid");
-        validation = true;
-    }
-    else
-    {
-        document.getElementById(level+"slip").setAttribute("class" ,"joueur");
-        validation = false;
-    }
-    
-}
 
 export default Soccer;
 /*
-
-function tableDesJoueurs(joueursList)
+tableDesJoueurs(joueursList)
 {
   var div= "";
   for(var i=0 ;i < Object.keys(joueursList).length; i++)
