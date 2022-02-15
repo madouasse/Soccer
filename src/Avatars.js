@@ -27,127 +27,162 @@ class Avatars extends React.Component {
         this.nextPage = this.nextPage.bind(this);
         this.state = { 
           accessory: null, 
+          accessoryIndex: 0,
           id: null,
-          valideIdMdp: String,
           exitOlive:700,
-          valideIdMdpBoolean:false,
           closePage :false,
           accessory :"none",
           body : "breasts",
+          bodyIndex:0,
           fond : "blue",
+          fondIndex : 0,
           clothing : "shirt",
+          clothingIndex : 0,
           clothingColor : "green",
+          clothingColorIndex : 0,
           eyebrows : "leftLowered",
+          eyebrowsIndex : 0,
           eyes : "normal",
+          eyesIndex : 0,
           mask : false,
           maskColor : "green",
+          maskColorIndex : 0,
           facialHair :"none",
+          facialHairIndex : 0,
           graphics :"none",
+          graphicsIndex :0,
           hair : "buzz",
+          hairIndex : 0,
           hairColor : "blonde",
+          hairColorIndex : 0,
           hat:"none",
+          hatIndex: 0,
           lashes : true,
+          lashesIndex: 0,
           hatColor : "green",
+          hatColorIndex: 0,
           lipColor : "turqoise",
+          lipColorIndex : 0,
           maskFace : true,
+          maskFaceIndex : 0,
           bouche : "grin",
-          skinTone : "light"
+          boucheIndex : 0,
+          skinTone : "light",
+          skinToneIndex : 0
         };
       }
     nextPage(){
         this.setState({closePage :true})
     }
-    onClickBigHead (setting)
-    {
+    onClickBigHead (setting, sens)
+    {    
     if(setting == "accessory")
     {
-        if(this.state.accessory == "none")
+        var accessories = ["none", "roundGlasses", "tinyGlasses", "shades"]; 
+        var index = this.state.accessoryIndex
+        sens == "+" ? index=index+1 : index=index-1
+
+        if(index <= 0 && sens == "-" )
         {
-            this.setState({accessory : "roundGlasses"}); 
+            index=accessories.length-1
         }
-        else if(this.state.accessory == "roundGlasses")
+        if(index == accessories.length && sens == "+")
         {
-            this.setState({accessory : "tinyGlasses"});
+            index=0
         }
-        else if(this.state.accessory == "tinyGlasses")
-        {
-            this.setState({accessory : "shades"});
-        }
-        else if(this.state.accessory == "shades")
-        {
-            this.setState({accessory : "none"})
-        }
+        this.setState({accessoryIndex : index})
+        this.setState({accessory: accessories[index]})
     }
     if(setting == "body")
     {
-        if(this.state.body == "breasts")
+        var bodies = ["breasts", "chest"]; 
+        var index = this.state.bodyIndex
+        //sens == "+" ? this.setState({bodyIndex : this.state.bodyIndex+1}) : this.setState({bodyIndex : this.state.bodyIndex-1})
+        sens == "+" ? index=index+1 : index=index-1
+        if(index <= 0 && sens == "-" )
         {
-            this.setState({body : "chest"})
+            index=bodies.length-1
         }
-        else if(this.state.body == "chest")
+        if(index == bodies.length && sens == "+")
         {
-            this.setState({body : "breasts"})
+            index=0
         }
+        this.setState({bodyIndex: index})
+        this.setState({body: bodies[index]})
     }
     if(setting == "fond")
     {
-        if(this.state.fond == "blue")
+        var fonds = ["blue", "red"]; 
+        var index = this.state.fondIndex
+
+        sens == "+" ? index=index+1 : index=index-1
+        if(index <= 0 && sens == "-" )
         {
-            this.setState({fond : "red"})
+            index = fonds.length-1
         }
-        else if(this.state.fond == "red")
+        if(index == fonds.length && sens == "+")
         {
-            this.setState({fond : "blue"})
+            index = 0
         }
+        this.setState({fond: fonds[index]})
+        this.setState({fondIndex: index})
     }
     if(setting == "clothing")
     {
-        if(this.state.clothing == "naked")
+        var clothings = ["naked", "shirt", "dressShirt", "vneck", "tankTop", "dress"];
+        var index = this.state.clothingIndex
+
+        sens == "+" ? index=index+1 : index=index-1
+
+        if(index <= 0 && sens == "-" )
         {
-            this.setState({clothing : "shirt"})
+            index = clothings.length-1
         }
-        else if(this.state.clothing == "shirt")
+        if(index == clothings.length && sens == "+")
         {
-            this.setState({clothing : "dressShirt"})
+            index = 0
         }
-        else if(this.state.clothing == "dressShirt")
-        {
-            this.setState({clothing : "vneck"})
-        }
-        else if(this.state.clothing == "vneck")
-        {
-            this.setState({clothing : "tankTop"})
-        }
-        else if(this.state.clothing == "tankTop")
-        {
-            this.setState({clothing : "dress"})
-        }
-        else if(this.state.clothing == "dress")
-        {
-            this.setState({clothing : "naked"})
-        }
+        this.setState({clothingIndex: index})
+        this.setState({clothing: clothings[index]})
     }
     if(setting == "clothingColor")
     {
-        if(this.state.clothingColor == "green")
+        var clothingColors = ["green", "red", "blue", "black"];
+        var index = this.state.clothingColorIndex
+
+        sens == "+" ? index=index+1 : index=index-1
+        if(index <= 0 && sens == "-" )
         {
-            this.setState({clothingColor : "red"})
+            index = clothingColors.length-1
         }
-        else if(this.state.clothingColor == "red")
+        if(index == clothingColors.length && sens == "+")
         {
-            this.setState({clothingColor : "blue"})
+            index = 0
         }
-        else if(this.state.clothingColor == "blue")
-        {
-            this.setState({clothingColor : "black"})
-        }
-        else if(this.state.clothingColor == "black")
-        {
-            this.setState({clothingColor : "green"})
-        }
+        this.setState({clothingColorIndex: index})
+        this.setState({clothingColor: clothingColors[index]})
     }
     if(setting == "eyebrows")
     {
+        var eyebrowsTable = ["leftLowered", "raised", "serious", "angry", "concerned"]; 
+        var index = this.state.eyebrowsIndex
+
+        sens == "+" ? index=index+1 : index=index-1
+        if(index <= 0 && sens == "-" )
+        {
+            index = eyebrowsTable.length-1
+        }
+        if(index == eyebrowsTable.length && sens == "+")
+        {
+            index = 0
+        }
+        this.setState({eyebrowsIndex: index})
+        this.setState({eyebrows: eyebrowsTable[index]})
+    }
+/*
+    if(setting == "eyebrows")
+    {
+        
         if(this.state.eyebrows == "leftLowered")
         {
             this.setState({eyebrows : "raised"})
@@ -169,69 +204,23 @@ class Avatars extends React.Component {
             this.setState({eyebrows : "leftLowered"})
         }
     }
-
-    if(setting == "eyebrows")
-    {
-        if(this.state.eyebrows == "leftLowered")
-        {
-            this.setState({eyebrows : "raised"})
-        }
-        else if(this.state.eyebrows == "raised")
-        {
-            this.setState({eyebrows : "serious"})
-        }
-        else if(this.state.eyebrows == "serious")
-        {
-            this.setState({eyebrows : "angry"})
-        }
-        else if(this.state.eyebrows == "angry")
-        {
-            this.setState({eyebrows : "concerned"})
-        }
-        else if(this.state.eyebrows == "concerned")
-        {
-            this.setState({eyebrows : "leftLowered"})
-        }
-    }
-
+*/
     if(setting == "eyes")
     {
-        if(this.state.eyes == "normal")
+        var eyesTable = ["normal", "leftTwitch", "happy", "content", "squint", "simple", "dizzy", "wink", "heart" ];
+        var index = this.state.eyesIndex
+
+        sens == "+" ? index=index+1 : index=index-1
+        if(index <= 0 && sens == "-" )
         {
-            this.setState({eyes : "leftTwitch"})
+            index = eyesTable.length-1
         }
-        else if(this.state.eyes == "leftTwitch")
+        if(index == eyesTable.length && sens == "+")
         {
-            this.setState({eyes : "happy"})
+            index = 0
         }
-        else if(this.state.eyes == "happy")
-        {
-            this.setState({eyes : "content"})
-        }
-        else if(this.state.eyes == "content")
-        {
-            this.setState({eyes : "squint"})
-        }
-        else if(this.state.eyes == "squint")
-        {
-            this.setState({eyes : "simple"})
-        }
-        else if(this.state.eyes == "simple")
-        {
-            this.setState({eyes : "dizzy"})
-        }        
-        else if(this.state.eyes == "dizzy")
-        {
-            this.setState({eyes : "wink"})
-        }
-        else if(this.state.eyes == "wink")
-        {
-            this.setState({eyes : "heart"})
-        }
-        else if(this.state.eyes == "heart")
-        {
-            this.setState({eyes : "normal"})
-        }
+        this.setState({eyesIndex: index})
+        this.setState({eyes: eyesTable[index]})
     }
     if(setting == "mask")
     {
@@ -246,154 +235,112 @@ class Avatars extends React.Component {
     }
     if(setting == "maskColor")
     {
-        if(this.state.maskColor == "green")
+        var maskColors = ["green", "red", "blue", "black"];
+        var index = this.state.maskColorIndex
+
+        sens == "+" ? index=index+1 : index=index-1
+        if(index <= 0 && sens == "-" )
         {
-            this.setState({maskColor : "red"})
+            index = maskColors.length-1
         }
-        else if(this.state.maskColor == "red")
+        if(index == maskColors.length && sens == "+")
         {
-            this.setState({maskColor : "blue"})
+            index = 0
         }
-        else if(this.state.maskColor == "blue")
-        {
-            this.setState({maskColor : "black"})
-        }
-        else if(this.state.maskColor == "black")
-        {
-            this.setState({maskColor : "green"})
-        }
+        this.setState({maskColorIndex: index})
+        this.setState({maskColor: maskColors[index]})
+
     }
     if(setting == "facialHair")
     {
+        var facialHairs = ["none", "stubble", "mediumBeard"]; 
+        var index = this.state.facialHairIndex
 
-        if(this.state.facialHair == "none")
+        sens == "+" ? index=index+1 : index=index-1
+        if(index <= 0 && sens == "-" )
         {
-            this.setState({facialHair : "stubble"})
+            index = facialHairs.length-1
         }
-        else if(this.state.facialHair == "stubble")
+        if(index == facialHairs.length && sens == "+")
         {
-            this.setState({facialHair : "mediumBeard"})
+            index = 0
         }
-        else if(this.state.facialHair == "mediumBeard")
-        {
-            this.setState({facialHair : "none"})
-        }
+        this.setState({facialHairIndex: index})
+        this.setState({facialHair: facialHairs[index]})
+
     }
     
     if(setting == "graphics")
     {
-        if(this.state.graphics == "none")
+        var graphicsTable = ["none", "redwood", "gatsby", "vue", "react", "graphQL"];
+        var index = this.state.graphicsIndex
+
+        sens == "+" ? index=index+1 : index=index-1
+        if(index <= 0 && sens == "-" )
         {
-            this.setState({graphics : "redwood"})
+            index = graphicsTable.length-1
         }
-        else if(this.state.graphics == "redwood")
+        if(index == graphicsTable.length && sens == "+")
         {
-            this.setState({graphics : "gatsby"})
+            index = 0
         }
-        else if(this.state.graphics == "gatsby")
-        {
-            this.setState({graphics : "vue"})
-        }
-        else if(this.state.graphics == "vue")
-        {
-            this.setState({graphics : "react"})
-        }
-        else if(this.state.graphics == "react")
-        {
-            this.setState({graphics : "graphQL"})
-        }
-        else if(this.state.graphics == "graphQL")
-        {
-            this.setState({graphics : "none"})
-        }
+        this.setState({graphicsIndex: index})
+        this.setState({graphics: graphicsTable[index]})
     }
 
     if(setting == "hair")
     {
-        if(this.state.hair == "buzz")
+        var index = this.state.hairIndex
+        sens == "+" ? index=index+1 : index=index-1
+        var hairs = ["buzz", "none", "long", "bun", "short", "pixie", "balding", "afro", "bob" ]; 
+        if(index <= 0 && sens == "-" )
         {
-            this.setState({hair : "none"})
+            index = hairs.length-1
         }
-        else if(this.state.hair == "none")
+        if(index == hairs.length-1 && sens == "+")
         {
-            this.setState({hair : "long"})
+            index = 0
         }
-        else if(this.state.hair == "long")
-        {
-            this.setState({hair : "bun"})
-        }
-        else if(this.state.hair == "bun")
-        {
-            this.setState({hair : "short"})
-        }
-        else if(this.state.hair == "short")
-        {
-            this.setState({hair : "pixie"})
-        }
-        else if(this.state.hair == "pixie")
-        {
-            this.setState({hair : "balding"})
-        }
-        else if(this.state.hair == "balding")
-        {
-            this.setState({hair : "afro"})
-        }        
-        else if(this.state.hair == "afro")
-        {
-            this.setState({hair : "bob"})
-        }        
-        else if(this.state.hair == "bob")
-        {
-            this.setState({hair : "buzz"})
-        }
+        this.setState({hairIndex: index})
+        this.setState({hair: hairs[index]})
+
     }
 
     if(setting == "hairColor")
     {
-        if(this.state.hairColor == "blonde")
+        var hairColors = ["blonde", "orange", "black", "white", "brown", "blue", "pink"];
+        var index = this.state.hairColorIndex
+        sens == "+" ? index=index+1 : index=index-1
+        if(index <= 0 && sens == "-" )
         {
-            this.setState({hairColor : "orange"})
+            index = hairColors.length-1
         }
-        else if(this.state.hairColor == "orange")
+        if(index == hairColors.length && sens == "+")
         {
-            this.setState({hairColor : "black"})
+            index = 0
         }
-        else if(this.state.hairColor == "black")
-        {
-            this.setState({hairColor : "white"})
-        }
-        else if(this.state.hairColor == "white")
-        {
-            this.setState({hairColor : "brown"})
-        }
-        else if(this.state.hairColor == "brown")
-        {
-            this.setState({hairColor : "blue"})
-        }
-        else if(this.state.hairColor == "blue")
-        {
-            this.setState({hairColor : "pink"})
-        }
-        else if(this.state.hairColor == "pink")
-        {
-            this.setState({hairColor : "blonde"})
-        }        
+        this.setState({hairColorIndex: index})
+        this.setState({hairColor: hairColors[index]})
+
     }
     
     if(setting == "hat")
     {
-        if(this.state.hat == "none")
+        var index = this.state.hatIndex
+
+        var hats = ["none", "beanie", "turban"]; 
+        sens == "+" ? index=index+1 : index=index-1
+
+        if(index <= 0 && sens == "-" )
         {
-            this.setState({ hat:"beanie"})
+            index = hats.length-1
         }
-        else if(this.state.hat == "beanie")
+        if(index == hats.length && sens == "+")
         {
-            this.setState({ hat:"turban"})
+            index = 0
         }
-        else if(this.state.hat == "turban")
-        {
-            this.setState({ hat:"none"})
-        }        
+        this.setState({hatIndex: index})
+        this.setState({hat: hats[index]})  
     }
 
     if(setting == "lashes")
@@ -410,49 +357,45 @@ class Avatars extends React.Component {
 
     if(setting == "hatColor")
     {
-        if(this.state.hatColor == "green")
+        var hatColors = ["green", "blue", "black", "white", "red"]; 
+        var index = this.state.hatColorIndex
+        console.log("avant :", index)
+
+        sens == "+" ? index=index+1 : index=index-1
+
+        if(index <= 0 && sens == "-" )
         {
-            this.setState({ hatColor : "blue"})
+            index = hatColors.length-1
         }
-        else if(this.state.hatColor == "blue")
+        if(index == hatColors.length && sens == "+")
         {
-            this.setState({ hatColor : "black"})
+            index = 0
         }
-        else if(this.state.hatColor == "black")
-        {
-            this.setState({ hatColor : "white"})
-        }
-        else if(this.state.hatColor == "white")
-        {
-            this.setState({hatColor : "red"})
-        }
-        else if(this.state.hatColor == "red")
-        {
-            this.setState({hatColor : "green"})
-        }       
+        console.log("Apres :", hatColors[index])
+
+        this.setState({hatColorIndex: index})    
+        this.setState({hatColor: hatColors[index]})      
     }
+
     if(setting == "lipColor")
     {
-        if(this.state.lipColor == "turqoise")
+        var lipColors = ["turqoise", "red", "purple", "pink", "green"]; 
+        var index = this.state.lipColorIndex
+        sens == "+" ? index=index+1 : index=index-1
+        console.log(this.state.lipColorIndex)
+
+        if(index <= 0 && sens == "-" )
         {
-            this.setState({lipColor : "red"})
+            index = lipColors.length-1
         }
-        else if(this.state.lipColor == "red")
+        if(index == lipColors.length && sens == "+")
         {
-            this.setState({lipColor : "purple"})
+            index = 0
         }
-        else if(this.state.lipColor == "purple")
-        {
-            this.setState({lipColor : "pink"})
-        }
-        else if(this.state.lipColor == "pink")
-        {
-            this.setState({lipColor : "green"})
-        }
-        else if(this.state.lipColor == "green")
-        {
-            this.setState({lipColor : "turqoise"})
-        }       
+        console.log(this.state.lipColorIndex)
+
+        this.setState({lipColorIndex: index})
+        this.setState({lipColor: lipColors[index]})
     }
     if(setting == "maskFace")
     {
@@ -468,62 +411,38 @@ class Avatars extends React.Component {
 
     if(setting == "bouche")
     {
-        if(this.state.bouche == "grin")
+        var bouches = ["grin", "sad", "openSmile", "lips", "open", "serious", "tongue"];
+        var index = this.state.boucheIndex
+
+        sens == "+" ? index=index+1 : index=index-1
+        if(index <= 0 && sens == "-" )
         {
-            this.setState({bouche : "sad"})
+            index = bouches.length-1
         }
-        else if(this.state.bouche == "sad")
+        if(index == bouches.length-1 && sens == "+")
         {
-            this.setState({bouche : "openSmile"})
-        }      
-        else if(this.state.bouche == "openSmile")
-        {
-            this.setState({bouche : "lips"})
-        } 
-        else if(this.state.bouche == "lips")
-        {
-            this.setState({bouche : "open"})
-        } 
-        else if(this.state.bouche == "open")
-        {
-            this.setState({bouche : "serious"})
-        } 
-        else if(this.state.bouche == "serious")
-        {
-            this.setState({bouche : "tongue"})
-        } 
-        else if(this.state.bouche == "tongue")
-        {
-            this.setState({bouche : "grin"})
+            index = 0
         }
+        this.setState({boucheIndex: index})
+        this.setState({bouche: bouches[index]})
     }
 
     if(setting == "skinTone")
     {
-        if(this.state.skinTone == "light")
+        var skinTones = ["light", "yellow", "brown", "dark", "red", "black"]; 
+        var index = this.state.skinToneIndex
+
+        sens == "+" ? index=index+1 : index=index-1
+        if(index <= 0 && sens == "-" )
         {
-            this.setState({skinTone : "yellow"})
+            index = skinTones.length-1
         }
-        else if(this.state.skinTone == "yellow")
+        if(index == skinTones.length-1 && sens == "+")
         {
-            this.setState({skinTone : "brown"})
-        }      
-        else if(this.state.skinTone == "brown")
-        {
-            this.setState({skinTone : "dark"})
-        } 
-        else if(this.state.skinTone == "dark")
-        {
-            this.setState({skinTone : "red"})
-        } 
-        else if(this.state.skinTone == "red")
-        {
-            this.setState({skinTone : "black"})
-        } 
-        else if(this.state.skinTone == "black")
-        {
-            this.setState({skinTone : "light"})
-        } 
+            index = 0
+        }
+        this.setState({skinToneIndex: index})
+        this.setState({skinTone: skinTones[index]})
     }
 }
 
@@ -540,29 +459,69 @@ render()
         {!this.state.closePage &&(
             <div className="BigHeadFlex">
                 <div className="BigHeadPointerList">
-                    <div className="BigHeadPointer" onClick={() => this.onClickBigHead("accessory")}>Lunette</div>
-                    <div className="BigHeadPointer" onClick={() => this.onClickBigHead("body")}>♂/♀</div>
-                    <div className="BigHeadPointer" onClick={() => this.onClickBigHead("fond")}>Couleur de fond</div>
-                    <div className="BigHeadPointer" onClick={() => this.onClickBigHead("clothing")}>Haut</div>
-                    <div className="BigHeadPointer" onClick={() => this.onClickBigHead("clothingColor")}>Couleur du Haut</div>
-                    <div className="BigHeadPointer" onClick={() => this.onClickBigHead("eyebrows")}>Style des Sourcils</div>
-                    <div className="BigHeadPointer" onClick={() => this.onClickBigHead("eyes")}>Style des Yeux</div>
-                    <div className="BigHeadPointer" onClick={() => this.onClickBigHead("mask")}>Masque</div>
-                    <div className="BigHeadPointer" onClick={() => this.onClickBigHead("maskColor")}>Couleur du masque</div>
-                    <div className="BigHeadPointer" onClick={() => this.onClickBigHead("graphics")}>Logo</div>
-                    <div className="BigHeadPointer" onClick={() => this.onClickBigHead("facialHair")}>Pilosité</div>
-                    <div className="BigHeadPointer" onClick={() => this.onClickBigHead("hair")}>Coiffure</div>
-                    <div className="BigHeadPointer" onClick={() => this.onClickBigHead("hairColor")}>Couleurs des Cheveux</div>
-                    <div className="BigHeadPointer" onClick={() => this.onClickBigHead("hat")}>Chapeau</div>
-                    <div className="BigHeadPointer" onClick={() => this.onClickBigHead("hatColor")}>Couleur du Chapeau</div>
-                    <div className="BigHeadPointer" onClick={() => this.onClickBigHead("lashes")}>Cils</div>
-                    <div className="BigHeadPointer" onClick={() => this.onClickBigHead("lipColor")}>Rouge à lévre</div>
-                    <div className="BigHeadPointer" onClick={() => this.onClickBigHead("maskFace")}>Fond</div>
-                    <div className="BigHeadPointer" onClick={() => this.onClickBigHead("bouche")}>Bouche</div>
-                    <div className="BigHeadPointer" onClick={() => this.onClickBigHead("skinTone")}>Peau</div>
-
+                    <div className="BigHeadPointerIndex">
+                        <div className="BigHeadPointerLeft" onClick={() => this.onClickBigHead("accessory", "-")}>◄ </div>Lunette<div className="BigHeadPointerRight" onClick={() => this.onClickBigHead("accessory", "+")}>►</div>
+                    </div>
+                    <div className="BigHeadPointerIndex">
+                        <div className="BigHeadPointerLeft" onClick={() => this.onClickBigHead("body", "-")}>◄ </div>♂/♀<div className="BigHeadPointerRight" onClick={() => this.onClickBigHead("body", "+")}>►</div>
+                    </div>
+                    <div className="BigHeadPointerIndex">
+                        <div className="BigHeadPointerLeft" onClick={() => this.onClickBigHead("fond", "-")}>◄ </div>Couleur de fond<div className="BigHeadPointerRight" onClick={() => this.onClickBigHead("fond", "+")}>►</div>
+                    </div>
+                    <div className="BigHeadPointerIndex">
+                        <div className="BigHeadPointerLeft" onClick={() => this.onClickBigHead("clothing", "-")}>◄ </div>Haut<div className="BigHeadPointerRight" onClick={() => this.onClickBigHead("clothing", "+")}>►</div>
+                    </div>
+                    <div className="BigHeadPointerIndex">
+                        <div className="BigHeadPointerLeft" onClick={() => this.onClickBigHead("clothingColor", "-")}>◄ </div>Couleur du Haut<div className="BigHeadPointerRight" onClick={() => this.onClickBigHead("clothingColor", "+")}>►</div>
+                    </div>
+                    <div className="BigHeadPointerIndex">
+                        <div className="BigHeadPointerLeft" onClick={() => this.onClickBigHead("eyebrows", "-")}>◄ </div>Style des Sourcils<div className="BigHeadPointerRight" onClick={() => this.onClickBigHead("eyebrows", "+")}>►</div>
+                    </div>
+                    <div className="BigHeadPointerIndex">
+                        <div className="BigHeadPointerLeft" onClick={() => this.onClickBigHead("eyes", "-")}>◄ </div>Style des Yeux<div className="BigHeadPointerRight" onClick={() => this.onClickBigHead("eyes", "+")}>►</div>
+                    </div>
+                    <div className="BigHeadPointerIndex">
+                        <div className="BigHeadPointerLeft" onClick={() => this.onClickBigHead("mask", "-")}>◄ </div>Masque<div className="BigHeadPointerRight" onClick={() => this.onClickBigHead("mask", "+")}>►</div>
+                    </div>
+                    <div className="BigHeadPointerIndex">
+                        <div className="BigHeadPointerLeft" onClick={() => this.onClickBigHead("maskColor", "-")}>◄ </div>Couleur du masque<div className="BigHeadPointerRight" onClick={() => this.onClickBigHead("maskColor", "+")}>►</div>
+                    </div>
+                    <div className="BigHeadPointerIndex">
+                        <div className="BigHeadPointerLeft" onClick={() => this.onClickBigHead("graphics", "-")}>◄ </div>Logo<div className="BigHeadPointerRight" onClick={() => this.onClickBigHead("graphics", "+")}>►</div>
+                    </div>
+                    <div className="BigHeadPointerIndex">
+                        <div className="BigHeadPointerLeft" onClick={() => this.onClickBigHead("facialHair", "-")}>◄ </div>Pilosité<div className="BigHeadPointerRight" onClick={() => this.onClickBigHead("facialHair", "+")}>►</div>
+                    </div>
+                    <div className="BigHeadPointerIndex">
+                        <div className="BigHeadPointerLeft" onClick={() => this.onClickBigHead("hair", "-")}>◄ </div>Coiffure<div className="BigHeadPointerRight" onClick={() => this.onClickBigHead("hair", "+")}>►</div>
+                    </div>
+                    <div className="BigHeadPointerIndex">
+                        <div className="BigHeadPointerLeft" onClick={() => this.onClickBigHead("hairColor", "-")}>◄ </div>Couleurs des Cheveux<div className="BigHeadPointerRight" onClick={() => this.onClickBigHead("hairColor", "+")}>►</div>
+                    </div>
+                    <div className="BigHeadPointerIndex">
+                        <div className="BigHeadPointerLeft" onClick={() => this.onClickBigHead("hat", "-")}>◄ </div>Chapeau<div className="BigHeadPointerRight" onClick={() => this.onClickBigHead("hat", "+")}>►</div>
+                    </div>
+                    <div className="BigHeadPointerIndex">
+                        <div className="BigHeadPointerLeft" onClick={() => this.onClickBigHead("hatColor", "-")}>◄ </div>Couleur du Chapeau<div className="BigHeadPointerRight" onClick={() => this.onClickBigHead("hatColor", "+")}>►</div>
+                    </div>
+                    <div className="BigHeadPointerIndex">
+                        <div className="BigHeadPointerLeft" onClick={() => this.onClickBigHead("lashes", "-")}>◄ </div>Cils<div className="BigHeadPointerRight" onClick={() => this.onClickBigHead("lashes", "+")}>►</div>
+                    </div>
+                    <div className="BigHeadPointerIndex">
+                        <div className="BigHeadPointerLeft" onClick={() => this.onClickBigHead("lipColor", "-")}>◄ </div>Rouge à lévre<div className="BigHeadPointerRight" onClick={() => this.onClickBigHead("lipColor", "+")}>►</div>
+                    </div>
+                    <div className="BigHeadPointerIndex">
+                        <div className="BigHeadPointerLeft" onClick={() => this.onClickBigHead("maskFace", "-")}>◄ </div>Fond<div className="BigHeadPointerRight" onClick={() => this.onClickBigHead("maskFace", "+")}>►</div>
+                    </div>
+                    <div className="BigHeadPointerIndex">
+                        <div className="BigHeadPointerLeft" onClick={() => this.onClickBigHead("bouche", "-")}>◄ </div>Bouche<div className="BigHeadPointerRight" onClick={() => this.onClickBigHead("bouche", "+")}>►</div>
+                    </div>
+                    <div className="BigHeadPointerIndex">
+                        <div className="BigHeadPointerLeft" onClick={() => this.onClickBigHead("skinTone", "-")}>◄ </div>Peau<div className="BigHeadPointerRight" onClick={() => this.onClickBigHead("skinTone", "+")}>►</div>
+                    </div>
                 </div>
                 <div>
+                <div className="BigHead">
                     <BigHead 
                     accessory={this.state.accessory}
                     body={this.state.body}
@@ -588,6 +547,7 @@ render()
                     className= "headPlayer"></BigHead>
                 </div>
                 <button className="login-btn" onClick={()=> this.nextPage()} ><Link class="boxhead" to="/soccer">Valider</Link></button>
+                </div>
             </div>)}
         </Router>
     </React.StrictMode>

@@ -58,7 +58,6 @@ class Login extends React.Component {
   
   render() {
     return(
-    <div className="fullScreen">    
     <React.StrictMode>
      <Router>
         <Route path="/avatar">
@@ -109,7 +108,6 @@ class Login extends React.Component {
       </header>)}
       </Router>
       </React.StrictMode>
-    </div>
     )
   }
 }

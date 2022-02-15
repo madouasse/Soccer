@@ -6,9 +6,9 @@ export default {
       MC:"10",
     },
     "Sylvain": {
-        But:"10",
-        MG:"6",
-        MD:"4",
-        MC:"10",
-      }
+      But:"10",
+      MG:"6",
+      MD:"4",
+      MC:"10",
+    }
 }

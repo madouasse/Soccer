@@ -5,6 +5,8 @@ import soccerWallfrom from './img/soccerWall.jpg'
 import React, { Component } from "react";
 import Soccer from "./Soccer";
 import Login from "./Login";
+import TricotAcceuil from "./tricot/tricotAcceuil";
+
 import Avatars from "./Avatars";
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 class App extends Component {
@@ -56,6 +58,9 @@ class App extends Component {
           <Route path="/login">
               <Login />
           </Route>
+          <Route path="/tricotAcceuil">
+              <TricotAcceuil />
+          </Route>
         {!this.state.soccerPage && !this.state.tricotPage &&(
         <header className="App-header">
           <div className="indexChoice">        
@@ -67,8 +72,10 @@ class App extends Component {
                 </div>
                 <div className="loggoAndTitre">
                   <div className = "TitreSoccerRemplissage"></div>
-                  <div onClick={()=> this.onClickTricot()} className = "TitreTricot">Tricot</div>
-                  <img className = "logoIndexTricot" src={tricotLogo} />
+                  <Link class="boxhead" to="/tricotAcceuil"> 
+                    <div onClick={()=> this.onClickTricot()} className = "TitreTricot">Tricot</div>
+                    <img className = "logoIndexTricot" src={tricotLogo} />
+                  </Link> 
                 </div>
               </div>
             </header>)}
