@@ -1,18 +1,23 @@
 import './App.css';
 import soccerLogo from './img/soccerLogo2.png'
 import tricotLogo from './img/tricotLogo.png'
-import soccerWallfrom from './img/soccerWall.jpg'
 import React, { Component } from "react";
-import Soccer from "./Soccer";
 import Login from "./Login";
 import TricotAcceuil from "./tricot/tricotAcceuil";
+import firebase from 'firebase';
+import config from "./configBDD/firebaseSoccer";
 
-import Avatars from "./Avatars";
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 class App extends Component {
   
   constructor(props) {
     super(props);
+    if (!firebase.apps.length) {
+      firebase.initializeApp(config);
+    }
+    else {
+      firebase.app();
+    }
     this.state = {
       soccerPage: null,
       tricotPage: null,

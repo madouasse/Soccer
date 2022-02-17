@@ -28,6 +28,49 @@ const useStyles = makeStyles({
         this.state = { 
           page: "Acceuil", 
           statJouerTotal: null,
+            accessory: null, 
+            accessoryIndex: 0,
+            id: null,
+            exitOlive:700,
+            closePage :false,
+            accessory :"none",
+            body : "breasts",
+            bodyIndex:0,
+            fond : "blue",
+            fondIndex : 0,
+            clothing : "shirt",
+            clothingIndex : 0,
+            clothingColor : "green",
+            clothingColorIndex : 0,
+            eyebrows : "leftLowered",
+            eyebrowsIndex : 0,
+            eyes : "normal",
+            eyesIndex : 0,
+            mask : false,
+            maskColor : "green",
+            maskColorIndex : 0,
+            facialHair :"none",
+            facialHairIndex : 0,
+            graphics :"none",
+            graphicsIndex :0,
+            hair : "buzz",
+            hairIndex : 0,
+            hairColor : "blonde",
+            hairColorIndex : 0,
+            hat:"none",
+            hatIndex: 0,
+            lashes : true,
+            lashesIndex: 0,
+            hatColor : "green",
+            hatColorIndex: 0,
+            lipColor : "turqoise",
+            lipColorIndex : 0,
+            maskFace : true,
+            maskFaceIndex : 0,
+            bouche : "grin",
+            boucheIndex : 0,
+            skinTone : "light",
+            skinToneIndex : 0
         };
       }
       
@@ -86,9 +129,30 @@ const useStyles = makeStyles({
                     <tbody>
                     {console.log("statJouerTotal :", statJouerTotal)}
                     {[... statJouerTotal.keys()].map((level) => (
-                    <tr className="joueur" id={level+"slip"} onClick={()=>this.alideOuNon(level)}>
-                    {validation == true &&
-                        (<BigHead id={level+"slip8"} className= "headPlayer"></BigHead>)}  
+                    <tr className="joueur" id={level+"slip"} onClick={()=>this.alideOuNon(level)}>                            
+                            <BigHead 
+                            accessory="roundGlasses"
+                            body={this.state.body}
+                            circleColor={this.state.fond}
+                            clothing={this.state.clothing}
+                            clothingColor={this.state.clothingColor}
+                            eyebrows={this.state.eyebrows}
+                            eyes={this.state.eyes}
+                            faceMask={this.state.mask}
+                            faceMaskColor={this.state.maskColor}
+                            facialHair={this.state.facialHair}
+                            fbclid="IwAR3L_E-ylO1QQaHpgAaMkwxcRbvIET3MNj3GJvJ9Wx9wV5zwfE3IkDWV2uM"
+                            graphic={this.state.graphics}
+                            hair={this.state.hair}
+                            hairColor={this.state.hairColor}
+                            hat={this.state.hat}
+                            hatColor={this.state.hatColor}
+                            lashes = {this.state.lashes}
+                            lipColor={this.state.lipColor}
+                            mask={this.state.maskFace}
+                            mouth={this.state.bouche}
+                            skinTone={this.state.skinTone}
+                            className= "headPlayer"></BigHead>
                     {[... TotalInfoJoueurs[level].keys()].map((row) => (
                         <td>{TotalInfoJoueurs[(level)][row]}</td>
                     ))}

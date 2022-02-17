@@ -73,6 +73,7 @@
     flex-direction: row;
     align-items: center;
     margin: auto;
+    position:absolute;
 }
 .BigHead{
     margin-bottom: 20px;

@@ -67,6 +67,7 @@ cursor: pointer;
   background-image: url(./img/vestiaireImg2.jpg) ;
   background-size: cover;
   background-position: center;
+  position:absolute;
 }
 .JouersVestiaire{
   font-family: 'Permanent Marker', cursive;
