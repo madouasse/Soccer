@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/Soccer/static/css/main.709298d7.chunk.css",
-    "main.js": "/Soccer/static/js/main.99b573c7.chunk.js",
-    "main.js.map": "/Soccer/static/js/main.99b573c7.chunk.js.map",
-    "runtime-main.js": "/Soccer/static/js/runtime-main.b60ac197.js",
-    "runtime-main.js.map": "/Soccer/static/js/runtime-main.b60ac197.js.map",
-    "static/js/2.d796dbe6.chunk.js": "/Soccer/static/js/2.d796dbe6.chunk.js",
-    "static/js/2.d796dbe6.chunk.js.map": "/Soccer/static/js/2.d796dbe6.chunk.js.map",
-    "static/js/3.bfb9b64d.chunk.js": "/Soccer/static/js/3.bfb9b64d.chunk.js",
-    "static/js/3.bfb9b64d.chunk.js.map": "/Soccer/static/js/3.bfb9b64d.chunk.js.map",
+    "main.css": "/Soccer/static/css/main.eb6feeff.chunk.css",
+    "main.js": "/Soccer/static/js/main.19773f97.chunk.js",
+    "main.js.map": "/Soccer/static/js/main.19773f97.chunk.js.map",
+    "runtime-main.js": "/Soccer/static/js/runtime-main.9b89e020.js",
+    "runtime-main.js.map": "/Soccer/static/js/runtime-main.9b89e020.js.map",
+    "static/js/2.aa31d2ea.chunk.js": "/Soccer/static/js/2.aa31d2ea.chunk.js",
+    "static/js/2.aa31d2ea.chunk.js.map": "/Soccer/static/js/2.aa31d2ea.chunk.js.map",
+    "static/js/3.dcab38c9.chunk.js": "/Soccer/static/js/3.dcab38c9.chunk.js",
+    "static/js/3.dcab38c9.chunk.js.map": "/Soccer/static/js/3.dcab38c9.chunk.js.map",
     "index.html": "/Soccer/index.html",
-    "static/css/main.709298d7.chunk.css.map": "/Soccer/static/css/main.709298d7.chunk.css.map",
-    "static/js/2.d796dbe6.chunk.js.LICENSE.txt": "/Soccer/static/js/2.d796dbe6.chunk.js.LICENSE.txt",
+    "static/css/main.eb6feeff.chunk.css.map": "/Soccer/static/css/main.eb6feeff.chunk.css.map",
+    "static/js/2.aa31d2ea.chunk.js.LICENSE.txt": "/Soccer/static/js/2.aa31d2ea.chunk.js.LICENSE.txt",
     "static/media/App.css": "/Soccer/static/media/soccerWall.c13375c8.jpg",
-    "static/media/Avatars.css": "/Soccer/static/media/pluie.805301b9.gif",
     "static/media/runsoccer.88a0e75c.gif": "/Soccer/static/media/runsoccer.88a0e75c.gif",
     "static/media/soccerLogo2.af1300c0.png": "/Soccer/static/media/soccerLogo2.af1300c0.png",
     "static/media/Soccer.css": "/Soccer/static/media/vestiaireImg2.53aa37ed.jpg",
+    "static/media/Avatars.css": "/Soccer/static/media/stade-de-foot-1024x576.1c76ae80.jpeg",
     "static/media/tricotLogo.035f3fd5.png": "/Soccer/static/media/tricotLogo.035f3fd5.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.b60ac197.js",
-    "static/js/2.d796dbe6.chunk.js",
-    "static/css/main.709298d7.chunk.css",
-    "static/js/main.99b573c7.chunk.js"
+    "static/js/runtime-main.9b89e020.js",
+    "static/js/2.aa31d2ea.chunk.js",
+    "static/css/main.eb6feeff.chunk.css",
+    "static/js/main.19773f97.chunk.js"
   ]
 }
