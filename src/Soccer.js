@@ -84,11 +84,13 @@ const useStyles = makeStyles({
                 <Vestiaire />
             </Route>
         {!this.state.closePage &&(    
+        <header className="App-header">
             <div className="soccerPage">
                 {this.state.page=="Acceuil" && ( <div className='vestiaire' onClick={() => this.onClickNext("vestiaire") }><Link class="boxhead" to="/vestiaire">Vestiaire</Link></div>)}
                 {this.state.page=="Acceuil" && (<div className="terrain" onClick={() => this.onClickNext("terrain")}>Terrain</div>)}
                 {this.state.page=="Acceuil" && (<div className="bus" onClick={() => this.onClickNext("bus")}>Bus</div>)}
             </div>
+        </header>    
         )}
         </Router>
     </React.StrictMode>    

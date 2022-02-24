@@ -3,21 +3,10 @@ import "./Avatars.css";
 import { BigHead } from '@bigheads/core'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Soccer from "./Soccer";
+import firebase from "firebase";
 
-
-var mask = false
-var maskColor = "green"
-var facialHair ="none"
-var graphics ="none"
-var hair = "buzz"
-var hairColor = "blonde"
-var hat="none"
 var lashes = true
-var hatColor = "green"
-var lipColor = "turqoise"
 var maskFace = true
-var bouche = "grin"
-var skinTone = "light"
 
 class Avatars extends React.Component {
 
@@ -72,6 +61,10 @@ class Avatars extends React.Component {
         };
       }
     nextPage(){
+        firebase.database().ref("avatar/"+this.props.id+"/").set(
+            [this.state.accessory, this.state.body, this.state.fond, this.state.clothing, this.state.clothingColor, this.state.eyebrows, this.state.eyes, 
+                this.state.mask, this.state.maskColor, this.state.facialHair, this.state.graphics, this.state.hair, this.state.hairColor, this.state.hat,
+                this.state.hatColor, this.state.lashes, this.state.lipColor, this.state.maskFace, this.state.bouche, this.state.skinTone])
         this.setState({closePage :true})
     }
     onClickBigHead (setting, sens)
@@ -351,7 +344,7 @@ class Avatars extends React.Component {
         }
         else if(!this.state.lashes)
         {
-            this.setState({ lashes:!lashes})
+            this.setState({ lashes: lashes})
         }      
     }
 
@@ -449,14 +442,15 @@ class Avatars extends React.Component {
 
 render() 
 {return(
-<div>
-    <header className="App-header">
     <React.StrictMode>
-     <Router>
-        <Route path="/soccer">
-            <Soccer />
-        </Route>
-        {!this.state.closePage &&(
+    <Router>
+       <Route path="/soccer">
+           <Soccer id={this.props.id}/>
+       </Route>
+    {!this.state.closePage &&(
+    <header className="App-header">
+
+        {console.log("Ici on a des slips")}
             <div className="BigHeadFlex">
                 <div className="BigHeadPointerList">
                     <div className="BigHeadPointerIndex">
@@ -548,11 +542,11 @@ render()
                 </div>
                 <button className="login-btn" onClick={()=> this.nextPage()} ><Link class="boxhead" to="/soccer">Valider</Link></button>
                 </div>
-            </div>)}
+            </div>
+        </header>
+        )}
         </Router>
     </React.StrictMode>
-</header>
-</div>
 )}
 }
 
