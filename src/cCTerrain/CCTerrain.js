@@ -15,6 +15,7 @@ class CCTerrain extends React.Component {
     this.handleChangeOption = this.handleChangeOption.bind(this);
     this.loadInfoDuTerrain = this.loadInfoDuTerrain.bind(this);
     this.createSelectItems = this.createSelectItems.bind(this);
+    this.onClickAddPlayer = this.onClickAddPlayer.bind(this)
     this.state = { 
       name: null,
       create: false,
@@ -28,7 +29,9 @@ class CCTerrain extends React.Component {
       valideIdMdpBoolean:false,
       infosDesTerrains:null,
       infosDuTerrain:null,
-      selected:false
+      selected:false,
+      avatar:null, 
+      joueur:null
     };
   }
 
@@ -43,68 +46,73 @@ class CCTerrain extends React.Component {
         this.setState({loading:false})
       })
     })
+
+    var avatar = null  
+    var avatarPromise = firebase.database().ref("avatar/"+this.props.id +"/")
+    firebase.database().ref("avatar/"+this.props.id+"/").once('value').then(()=> {
+      avatarPromise.on('value', snapshot => {
+      avatar = snapshot.toJSON()
+      this.setState({avatar:(avatar)})
+      })
+    })
   }
 
+  onClickAddPlayer(){
+    if(!this.state.infosDuTerrain.includes(this.props.id))
+    {
+      firebase.database().ref("terrain/" + this.state.option + "/" + this.props.id + "/avatar").set(this.state.avatar)
+      firebase.database().ref("terrain/" + this.state.option + "/" + this.props.id + "/stats/But").set("0")
+      firebase.database().ref("terrain/" + this.state.option + "/" + this.props.id + "/stats/MG").set("0")
+      firebase.database().ref("terrain/" + this.state.option + "/" + this.props.id + "/stats/MD").set("0")
+      firebase.database().ref("terrain/" + this.state.option + "/" + this.props.id + "/stats/MC").set("0")
+    }
+  }
   handleChangeId(event) {
     this.setState({id : event.target.value});
-    this.onClickNextAndValide(event.target.value, this.state.mdp, true)
   }
 
-  onClickNextAndValide(ids, nextPage){
-    if((ids!=null) && (ids?.value!=""))
-    {  
-      if(!nextPage)
-      {
-        firebase.database.ref("terrain/" + ids + "/").set(this.props.id)
+  onClickNextAndValide(){
         this.setState({closePage : true});
         this.setState({valideIdMdpBoolean : true})
+        this.onClickAddPlayer()
       }
-    }
-    else
-    {
-        this.setState({valideIdMdp : "Mon Canard, donnes au moins un nom à ton terrain ! :3 "});
-    }
-}
 
-handleChangeOption(event) {
-    this.setState({valideIdMdpBoolean : true})
-    this.setState({option : event.target.selectedOptions[0].text})
-    this.setState({infosDuTerrain : event.target.value, selected:true})
-    this.loadInfoDuTerrain()
-}
+  handleChangeOption(event) {
+      this.setState({valideIdMdpBoolean : true})
+      this.setState({option : event.target.selectedOptions[0].text})
+      this.setState({infosDuTerrain : event.target.value, selected:true})
+      this.loadInfoDuTerrain()
+  }
 
-loadInfoDuTerrain()
-{
-  if(this.state.infosDuTerrain != null)
+  loadInfoDuTerrain()
   {
-    console.log(this.state.selected)
-    var tabJoueur = this.state.infosDuTerrain.toString().split(',')
-    var nombreDeJoueurs = tabJoueur.length
-    let itemsJoueurs = [];         
-    for (let i = 0; i < nombreDeJoueurs ; i++) {             
-      itemsJoueurs.push(<div>{tabJoueur[i]}<br/></div>);  
+    if(this.state.infosDuTerrain != null)
+    {
+      var tabJoueur = this.state.infosDuTerrain.toString().split(',')
+      var nombreDeJoueurs = tabJoueur.length
+      let itemsJoueurs = [];         
+      for (let i = 0; i < nombreDeJoueurs ; i++) {             
+        itemsJoueurs.push(<div>{(tabJoueur[i])}<br/></div>);  
+      }
+      return itemsJoueurs;
     }
-    return itemsJoueurs;
   }
-}
 
-createSelectItems() {
-  let items = [];         
-  for (let i = 0; i < this.state.options.length ; i++) {             
-    items.push(<option key={Object.keys(this.state.infosDesTerrains)[i]} value={Object.values(Object.values(this.state.infosDesTerrains)[i])}>{Object.keys(this.state.infosDesTerrains)[i]}</option>);  
-  }
-  return items;
-}  
+  createSelectItems() {
+    let items = [];         
+    for (let i = 0; i < this.state.options.length ; i++) {       
+      items.push(<option key={Object.keys(this.state.infosDesTerrains)[i]} value={Object.keys(Object.values(this.state.infosDesTerrains)[i])}>{Object.keys(this.state.infosDesTerrains)[i]}</option>);  
+    }
+    return items;
+  }  
+
 render() {
 
     return(
     <React.StrictMode>
         <Router>
-           <Route path="/avatar">
-             <Avatars id={this.state.id}/>
-           </Route>
            <Route path="/soccer">
-             <Soccer id={this.state.id}/>
+             <Soccer id={this.props.id} terrain={this.state.option}/>
            </Route>
            {!this.state.closePage &&(
            <header >
@@ -125,8 +133,8 @@ render() {
                       {!this.state.selected &&(<option></option>)}   
                       {this.createSelectItems()}         
                     </select>
-                    <div className="rejoindreImage" onClick={()=> this.onClickNextAndValide(this.state.id, this.state.mdp, this.state.mdpCreate, false)}>
-                        {this.state.valideIdMdpBoolean == true  &&(<Link class="rejoindreImage" to="/Avatar"><div>Entrez</div>
+                    <div className="rejoindreImage" onClick={()=> this.onClickNextAndValide()}>
+                        {this.state.valideIdMdpBoolean == true  &&(<Link class="rejoindreImage" to="/soccer"><div>Entrez</div>
                       <div class="containerOne">    
                         <div className="centerDoor">
                           <div class="door">

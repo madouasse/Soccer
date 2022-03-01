@@ -13,6 +13,7 @@ var Listjoueur = [];
 var statJouer = [];
 var statJouerTotal = [];
 var TotalInfoJoueurs = [];
+
 const useStyles = makeStyles({
 	table: {
 	  minWidth: 650,
@@ -20,19 +21,22 @@ const useStyles = makeStyles({
   });
 
 
-  class Soccer extends React.Component {
+class Soccer extends React.Component {
     constructor(props) {
         super(props);
         this.onClickNext = this.onClickNext.bind(this);
         this.tableDesJoueurs = this.tableDesJoueurs.bind(this);
         this.valideOuNon = this.valideOuNon.bind(this);
         this.state = { 
-          page: "Acceuil", 
-          statJouerTotal: null,
-          closePage: false
+            page: "Acceuil", 
+            statJouerTotal: null,
+            closePage: false,
+            imageStatus:false,
+            imageStatus2:false,
+            imageStatus3:false,
         };
-      }
-      
+    }
+
       onClickNext (newPage)
       {
           if(newPage == "vestiaire")
@@ -81,12 +85,12 @@ const useStyles = makeStyles({
     <React.StrictMode>
         <Router>
             <Route path="/Vestiaire">
-                <Vestiaire />
+                <Vestiaire id={this.props.id} terrain={this.props.terrain}/>
             </Route>
         {!this.state.closePage &&(    
         <header className="App-header">
             <div className="soccerPage">
-                {this.state.page=="Acceuil" && ( <div className='vestiaire' onClick={() => this.onClickNext("vestiaire") }><Link class="boxhead" to="/vestiaire">Vestiaire</Link></div>)}
+                {this.state.page=="Acceuil" && (<div className='vestiaire' onClick={() => this.onClickNext("vestiaire") }><Link class="boxhead" to="/vestiaire">Vestiaire</Link></div>)}
                 {this.state.page=="Acceuil" && (<div className="terrain" onClick={() => this.onClickNext("terrain")}>Terrain</div>)}
                 {this.state.page=="Acceuil" && (<div className="bus" onClick={() => this.onClickNext("bus")}>Bus</div>)}
             </div>

@@ -4,6 +4,7 @@ import { BigHead } from '@bigheads/core'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Soccer from "./Soccer";
 import firebase from "firebase";
+import CCTerrain from "./cCTerrain/CCTerrain.js";
 
 var lashes = true
 var maskFace = true
@@ -61,11 +62,18 @@ class Avatars extends React.Component {
         };
       }
     nextPage(){
+        let items = null
         firebase.database().ref("avatar/"+this.props.id+"/").set(
             [this.state.accessory, this.state.body, this.state.fond, this.state.clothing, this.state.clothingColor, this.state.eyebrows, this.state.eyes, 
                 this.state.mask, this.state.maskColor, this.state.facialHair, this.state.graphics, this.state.hair, this.state.hairColor, this.state.hat,
                 this.state.hatColor, this.state.lashes, this.state.lipColor, this.state.maskFace, this.state.bouche, this.state.skinTone])
         this.setState({closePage :true})
+
+        items = ["<BigHead accessory='",this.state.accessory, "' body='", this.state.body, "' circleColor= '",this.state.circleColor,"' clothing= '",this.state.clothing,"' clothingColor='",
+        this.state.clothingColor,"' eyebrows= '",this.state.eyebrows,"' eyes= '",this.state.eyes,"' faceMask= '",this.state.mask," ' faceMaskColor= '", this.state.maskColor,"' facialHair= '",this.state.facialHair
+        ,"'fbclid='IwAR3L_E-ylO1QQaHpgAaMkwxcRbvIET3MNj3GJvJ9Wx9wV5zwfE3IkDWV2uM'","graphic='",this.state.graphics,"' hair='",this.state.hair,"' hairColor='",this.state.hairColor,"' hat= ' "
+        ,this.state.hat,"' hatColor='",this.state.hatColor,"' lashes= '",this.state.lashes,"' lipColor='",this.state.lipColor,"'mask='",this.state.maskFace,"'mouth='",this.state.bouche,"'skinTone='",this.state.skinTone,"' className='headPlayer'></BigHead>"];
+        firebase.database().ref("avatar/items/"+this.props.id+"/").set(items.join(''))    
     }
     onClickBigHead (setting, sens)
     {    
@@ -352,8 +360,6 @@ class Avatars extends React.Component {
     {
         var hatColors = ["green", "blue", "black", "white", "red"]; 
         var index = this.state.hatColorIndex
-        console.log("avant :", index)
-
         sens == "+" ? index=index+1 : index=index-1
 
         if(index <= 0 && sens == "-" )
@@ -364,8 +370,6 @@ class Avatars extends React.Component {
         {
             index = 0
         }
-        console.log("Apres :", hatColors[index])
-
         this.setState({hatColorIndex: index})    
         this.setState({hatColor: hatColors[index]})      
     }
@@ -375,8 +379,6 @@ class Avatars extends React.Component {
         var lipColors = ["turqoise", "red", "purple", "pink", "green"]; 
         var index = this.state.lipColorIndex
         sens == "+" ? index=index+1 : index=index-1
-        console.log(this.state.lipColorIndex)
-
         if(index <= 0 && sens == "-" )
         {
             index = lipColors.length-1
@@ -385,8 +387,6 @@ class Avatars extends React.Component {
         {
             index = 0
         }
-        console.log(this.state.lipColorIndex)
-
         this.setState({lipColorIndex: index})
         this.setState({lipColor: lipColors[index]})
     }
@@ -439,18 +439,15 @@ class Avatars extends React.Component {
     }
 }
 
-
 render() 
 {return(
     <React.StrictMode>
     <Router>
        <Route path="/soccer">
-           <Soccer id={this.props.id}/>
+           <CCTerrain id={this.props.id}/>
        </Route>
     {!this.state.closePage &&(
     <header className="App-header">
-
-        {console.log("Ici on a des slips")}
             <div className="BigHeadFlex">
                 <div className="BigHeadPointerList">
                     <div className="BigHeadPointerIndex">
@@ -540,7 +537,7 @@ render()
                     skinTone={this.state.skinTone}
                     className= "headPlayer"></BigHead>
                 </div>
-                <button className="login-btn" onClick={()=> this.nextPage()} ><Link class="boxhead" to="/soccer">Valider</Link></button>
+                <button className="login-btn" onClick={()=> this.nextPage()} ><Link class="boxhead" to="/CCTerrain">Valider</Link></button>
                 </div>
             </div>
         </header>

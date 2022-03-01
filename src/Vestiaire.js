@@ -3,6 +3,8 @@ import "./Soccer.css";
 import lesJoueurs from "./configJoueur";
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Soccer from "./Soccer";
+import firebase from "firebase";
+import PopupVestiaire from "./popupVestiaire/PopupVestiaire";
 
 import { makeStyles } from '@material-ui/core/styles';
 import { BigHead } from '@bigheads/core'
@@ -20,74 +22,107 @@ const useStyles = makeStyles({
   });
 
 
+
   class Vestiaire extends React.Component {
     constructor(props) {
         super(props);
         this.tableDesJoueurs = this.tableDesJoueurs.bind(this);
         this.valideOuNon = this.valideOuNon.bind(this);
+        this.togglePopup = this.togglePopup.bind(this);
         this.state = { 
           page: "Acceuil", 
           statJouerTotal: null,
-            accessory: null, 
-            accessoryIndex: 0,
-            id: null,
-            exitOlive:700,
-            closePage :false,
-            accessory :"none",
-            body : "breasts",
-            bodyIndex:0,
-            fond : "blue",
-            fondIndex : 0,
-            clothing : "shirt",
-            clothingIndex : 0,
-            clothingColor : "green",
-            clothingColorIndex : 0,
-            eyebrows : "leftLowered",
-            eyebrowsIndex : 0,
-            eyes : "normal",
-            eyesIndex : 0,
-            mask : false,
-            maskColor : "green",
-            maskColorIndex : 0,
-            facialHair :"none",
-            facialHairIndex : 0,
-            graphics :"none",
-            graphicsIndex :0,
-            hair : "buzz",
-            hairIndex : 0,
-            hairColor : "blonde",
-            hairColorIndex : 0,
-            hat:"none",
-            hatIndex: 0,
-            lashes : true,
-            lashesIndex: 0,
-            hatColor : "green",
-            hatColorIndex: 0,
-            lipColor : "turqoise",
-            lipColorIndex : 0,
-            maskFace : true,
-            maskFaceIndex : 0,
-            bouche : "grin",
-            boucheIndex : 0,
-            skinTone : "light",
-            skinToneIndex : 0
+          accessory: null, 
+          accessoryIndex: 0,
+          id: null,
+          exitOlive:700,
+          closePage :false,
+          avatar: null,
+          showPopup: false,
+          avatarStats:[],
+          statsJoueur:null,
+          nomDuJoueur:null
         };
       }
       
-      tableDesJoueurs(joueursList)
-      {
-        for(var i=0 ;i < Object.keys(joueursList).length; i++)
+      componentWillMount() {
+        var terrain = null  
+        var terrainsPromise = firebase.database().ref("terrain/"+this.props.terrain + "/")
+        firebase.database().ref("terrain/"+this.props.terrain + "/" + this.props.id).once('value').then(()=> {
+            terrainsPromise.on('value', snapshot => {
+            terrain = snapshot.toJSON();
+            this.setState({avatar:terrain})
+          })
+        })
+      }
+
+      togglePopup(lesAvatar, lesStatsDesJoueur, e) {
+        if(this.state.showPopup)
         {
-          var iu = Object.values(joueursList)[i];
-          iu = Object.values(iu);
-          Listjoueur[i] = Object.keys(joueursList)[i];
-          statJouer = [];
-          for (var u = 0; u<iu.length; u++)
-              {
-                  statJouer[u]=iu[u];
-              }
-              statJouerTotal[i] = [statJouer]
-              TotalInfoJoueurs[i] = [Listjoueur[i], ... statJouer]   
+          this.setState({showPopup: false});
+        }
+        else
+        {
+          this.setState({showPopup: true});
+        }
+        if(e != null && e.target != null) 
+        {
+          console.log("{statsJoueur:lesStatsDesJoueur[e.target.viewportElement.id][stats]}", Object.values(lesStatsDesJoueur[e.target.viewportElement.id]["stats"]))
+          this.setState({avatarStats:lesAvatar[e.target.viewportElement.id]})
+          this.setState({statsJoueur:lesStatsDesJoueur[e.target.viewportElement.id]["stats"]})
+          this.setState({nomDuJoueur:Listjoueur[e.target.viewportElement.id]})
+          
+        }
+
+      }
+
+      tableDesJoueurs()
+      {
+        var lesAvatar =[];
+        var canard = 0
+        if(this.state.avatar != null)
+        {
+          for(var i=0 ;i < Object.keys(this.state.avatar).length; i++)
+          {
+            var iu = Object.values(this.state.avatar)[i]["stats"];
+            iu = Object.values(iu);
+            statJouer = [];
+                      lesAvatar.push(
+                        <BigHead 
+                          id={i}
+                          onClick={(e)=> {this.togglePopup(lesAvatar, Object.values(this.state.avatar), e)}}
+                          accessory={Object.values(this.state.avatar)[i]["avatar"][0]}
+                          body={Object.values(this.state.avatar)[i]["avatar"][1]}
+                          circleColor={Object.values(this.state.avatar)[i]["avatar"][2]}
+                          clothing={Object.values(this.state.avatar)[i]["avatar"][3]}
+                          clothingColor={Object.values(this.state.avatar)[i]["avatar"][4]}
+                          eyebrows={Object.values(this.state.avatar)[i]["avatar"][5]}
+                          eyes={Object.values(this.state.avatar)[i]["avatar"][6]}
+                          faceMask={Object.values(this.state.avatar)[i]["avatar"][7]}
+                          faceMaskColor={Object.values(this.state.avatar)[i]["avatar"][8]}
+                          facialHair={Object.values(this.state.avatar)[i]["avatar"][9]}
+                          fbclid="IwAR3L_E-ylO1QQaHpgAaMkwxcRbvIET3MNj3GJvJ9Wx9wV5zwfE3IkDWV2uM"
+                          graphic={Object.values(this.state.avatar)[i]["avatar"][10]}
+                          hair={Object.values(this.state.avatar)[i]["avatar"][11]}
+                          hairColor={Object.values(this.state.avatar)[i]["avatar"][12]}
+                          hat={Object.values(this.state.avatar)[i]["avatar"][13]}
+                          hatColor={Object.values(this.state.avatar)[i]["avatar"][14]}
+                          lashes = {Object.values(this.state.avatar)[i]["avatar"][15]}
+                          lipColor={Object.values(this.state.avatar)[i]["avatar"][16]}
+                          mask={Object.values(this.state.avatar)[i]["avatar"][17]}
+                          mouth={Object.values(this.state.avatar)[i]["avatar"][18]}
+                          skinTone={Object.values(this.state.avatar)[i]["avatar"][19]}
+                          className= "headPlayer">          
+                        </BigHead>
+                      )
+                      Listjoueur[i] = Object.keys(this.state.avatar)[i];
+            for (var u = 0; u<=iu.length; u++)
+                {
+                    statJouer[u]=iu[u];
+                }
+                statJouerTotal[i] = [statJouer]
+                TotalInfoJoueurs[i] = [lesAvatar[i], Listjoueur[i], ... statJouer]   
+            }
           }
       }
       
@@ -102,11 +137,9 @@ const useStyles = makeStyles({
           {
               document.getElementById(level+"slip").setAttribute("class" ,"joueur");
               validation = false;
-          }
-          
+          }          
       }
-
-
+      
       render() {
         this.tableDesJoueurs(lesJoueurs)
         return(
@@ -119,40 +152,17 @@ const useStyles = makeStyles({
                     <thead >
                         <tr className='TableJours'>
                             <th className= "headPlayerCell"></th>
-                            <th onClick={()=>this.onClickNext("bite")}>Joueurs</th>
+                            <th> Joueurs</th>
                             <th>But</th>
                             <th>Match Gagné</th>
                             <th>Match Perdu</th>
                             <th>Match Joué</th>
                         </tr>
                     </thead>
-                    <tbody>
-                    {console.log("statJouerTotal :", statJouerTotal)}
+                    <tbody >
                     {[... statJouerTotal.keys()].map((level) => (
-                    <tr className="joueur" id={level+"slip"} onClick={()=>this.alideOuNon(level)}>                            
-                            <BigHead 
-                            accessory="roundGlasses"
-                            body={this.state.body}
-                            circleColor={this.state.fond}
-                            clothing={this.state.clothing}
-                            clothingColor={this.state.clothingColor}
-                            eyebrows={this.state.eyebrows}
-                            eyes={this.state.eyes}
-                            faceMask={this.state.mask}
-                            faceMaskColor={this.state.maskColor}
-                            facialHair={this.state.facialHair}
-                            fbclid="IwAR3L_E-ylO1QQaHpgAaMkwxcRbvIET3MNj3GJvJ9Wx9wV5zwfE3IkDWV2uM"
-                            graphic={this.state.graphics}
-                            hair={this.state.hair}
-                            hairColor={this.state.hairColor}
-                            hat={this.state.hat}
-                            hatColor={this.state.hatColor}
-                            lashes = {this.state.lashes}
-                            lipColor={this.state.lipColor}
-                            mask={this.state.maskFace}
-                            mouth={this.state.bouche}
-                            skinTone={this.state.skinTone}
-                            className= "headPlayer"></BigHead>
+                    <tr className="joueur" id={level+"slip"}
+                    >                            
                     {[... TotalInfoJoueurs[level].keys()].map((row) => (
                         <td>{TotalInfoJoueurs[(level)][row]}</td>
                     ))}
@@ -160,6 +170,16 @@ const useStyles = makeStyles({
                      ))}
                     </tbody>                
                 </table>
+                {this.state.showPopup ? 
+                  <PopupVestiaire
+                    statsDuJoueur={this.state.statsJoueur}
+                    closePopup={this.togglePopup.bind(this)}
+                    avatarStats={this.state.avatarStats}
+                    nomDuJoueur={this.state.nomDuJoueur}
+                    terrain={this.props.terrain}
+                  />
+                  : null
+                }
               </div>
     )}}
 
