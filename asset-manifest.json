@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/Soccer/static/css/main.c3cd3e80.chunk.css",
-    "main.js": "/Soccer/static/js/main.d9a27c25.chunk.js",
-    "main.js.map": "/Soccer/static/js/main.d9a27c25.chunk.js.map",
+    "main.js": "/Soccer/static/js/main.b83fd348.chunk.js",
+    "main.js.map": "/Soccer/static/js/main.b83fd348.chunk.js.map",
     "runtime-main.js": "/Soccer/static/js/runtime-main.7aaa63a3.js",
     "runtime-main.js.map": "/Soccer/static/js/runtime-main.7aaa63a3.js.map",
-    "static/js/2.bfe9255f.chunk.js": "/Soccer/static/js/2.bfe9255f.chunk.js",
-    "static/js/2.bfe9255f.chunk.js.map": "/Soccer/static/js/2.bfe9255f.chunk.js.map",
+    "static/js/2.ef8a72e5.chunk.js": "/Soccer/static/js/2.ef8a72e5.chunk.js",
+    "static/js/2.ef8a72e5.chunk.js.map": "/Soccer/static/js/2.ef8a72e5.chunk.js.map",
     "static/js/3.7568a4fc.chunk.js": "/Soccer/static/js/3.7568a4fc.chunk.js",
     "static/js/3.7568a4fc.chunk.js.map": "/Soccer/static/js/3.7568a4fc.chunk.js.map",
     "index.html": "/Soccer/index.html",
     "static/css/main.c3cd3e80.chunk.css.map": "/Soccer/static/css/main.c3cd3e80.chunk.css.map",
-    "static/js/2.bfe9255f.chunk.js.LICENSE.txt": "/Soccer/static/js/2.bfe9255f.chunk.js.LICENSE.txt",
+    "static/js/2.ef8a72e5.chunk.js.LICENSE.txt": "/Soccer/static/js/2.ef8a72e5.chunk.js.LICENSE.txt",
     "static/media/App.css": "/Soccer/static/media/soccerWall.c13375c8.jpg",
     "static/media/CCTerrain.css": "/Soccer/static/media/giphyVestR.92ec37e9.gif",
     "static/media/runsoccer.88a0e75c.gif": "/Soccer/static/media/runsoccer.88a0e75c.gif",
@@ -22,8 +22,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.7aaa63a3.js",
-    "static/js/2.bfe9255f.chunk.js",
+    "static/js/2.ef8a72e5.chunk.js",
     "static/css/main.c3cd3e80.chunk.css",
-    "static/js/main.d9a27c25.chunk.js"
+    "static/js/main.b83fd348.chunk.js"
   ]
 }
