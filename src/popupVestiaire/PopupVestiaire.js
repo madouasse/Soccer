@@ -1,5 +1,7 @@
 import React from "react";
 import "../Soccer.css";
+import "./popupVestiaire.scss";
+
 import firebase from "firebase";
 
 
@@ -29,22 +31,30 @@ class PopupVestiaire extends React.Component {
           <div className='popup_inner'>
             <h1>Les stats de {this.props.nomDuJoueur}</h1>
             <div className="lesStats">
-                <div className="addRemove" onClick={()=>{this.setState({but:this.state.but-1})}}>-</div>
+                <div className="remove" onClick={()=>{this.setState({but:this.state.but-1})}}>-</div>
                     <div>Les Buts : {this.state.but}</div>
-                <div className="addRemove" onClick={()=>{this.setState({but:this.state.but+1})}}>+</div>
-                <div className="addRemove" onClick={()=>{this.setState({mg:this.state.mg-1})}}>-</div>
-                    <div>Match Gagner : {this.state.mg}</div>
-                <div className="addRemove" onClick={()=>{this.setState({mg:this.state.mg+1})}}>+</div>
-                <div className="addRemove" onClick={()=>{this.setState({mp:this.state.mp-1})}}>-</div>
-                    <div>Match Perdue : {this.state.mp}</div>
-                <div className="addRemove" onClick={()=>{this.setState({mp:this.state.mp+1})}}>+</div>
-                <div className="addRemove" onClick={()=>{this.setState({mj:this.state.mj-1})}}>-</div>
-                    <div>Match Joué : {this.state.mj}</div>
-                <div className="addRemove" onClick={()=>{this.setState({mj:this.state.mj+1})}}>+</div>
+                <div className="add" onClick={()=>{this.setState({but:this.state.but+1})}}>+</div>
+                <div className="remove" onClick={()=>{this.setState({mg:this.state.mg-1})}}>-</div>
+                    <div>Matchs Gagnés : {this.state.mg}</div>
+                <div className="add" onClick={()=>{this.setState({mg:this.state.mg+1})}}>+</div>
+                <div className="remove" onClick={()=>{this.setState({mp:this.state.mp-1})}}>-</div>
+                    <div>Matchs Perdus : {this.state.mp}</div>
+                <div className="add" onClick={()=>{this.setState({mp:this.state.mp+1})}}>+</div>
+                <div className="remove" onClick={()=>{this.setState({mj:this.state.mj-1})}}>-</div>
+                    <div>Matchs Joués : {this.state.mj}</div>
+                <div className="add" onClick={()=>{this.setState({mj:this.state.mj+1})}}>+</div>
             </div>
-            {this.props.avatarStats}
-          <button onClick={this.ajoutDesStats}>Valider</button>
-          <button onClick={this.props.closePopup}>Annuler</button>
+            <div className="avatarButton">
+              {this.props.avatarStats}
+              <button className="button" onClick={this.ajoutDesStats}>
+                <span></span><span></span><span></span><span></span>
+                Valider
+              </button>
+              <button className="buttonCancel" onClick={this.props.closePopup}>
+                <span></span><span></span><span></span><span></span>
+                Annuler
+              </button>
+            </div>
           </div>
         </div>
       );

@@ -152,11 +152,11 @@ const useStyles = makeStyles({
                     <thead >
                         <tr className='TableJours'>
                             <th className= "headPlayerCell"></th>
-                            <th> Joueurs</th>
-                            <th>But</th>
-                            <th>Match Gagné</th>
-                            <th>Match Perdu</th>
-                            <th>Match Joué</th>
+                            <th>Joueurs</th>
+                            <th>Buts</th>
+                            <th>Matchs Gagnés</th>
+                            <th>Matchs Perdus</th>
+                            <th>Matchs Joués</th>
                         </tr>
                     </thead>
                     <tbody >

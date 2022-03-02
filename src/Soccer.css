@@ -46,15 +46,15 @@ cursor: pointer;
   }
 .bus
 {
-    font-family: 'Amatic SC', cursive;
-    width: 100%;
-    background-image: url(./img/superBus2.jpg);
-    background-size: cover;
-    font-size: 100px;
-    text-shadow:0 0 2px #f8fc02,0 0 30px #f8fc02,0px 0px 5px #f8fc02, 0 0 150px #f8fc02;color:#f8fc02;
-    color: rgba(255, 255, 255, 0);
-    transition: all 600ms ease;
-    cursor: pointer;
+  font-family: 'Amatic SC', cursive;
+  width: 100%;
+  background-image: url(./img/superBus2.jpg);
+  background-size: cover;
+  font-size: 100px;
+  text-shadow:0 0 2px #f8fc02,0 0 30px #f8fc02,0px 0px 5px #f8fc02, 0 0 150px #f8fc02;color:#f8fc02;
+  color: rgba(255, 255, 255, 0);
+  transition: all 600ms ease;
+  cursor: pointer;
 
 }
 .bus:hover {
@@ -81,13 +81,13 @@ cursor: pointer;
 
 .vestiaireNeon
 {
-font-family: 'Yellowtail', cursive;
-font-size: 100px;
-text-shadow:0 0 2px #D000FE,0 0 30px #D000FE,0px 0px 5px #D000FE, 0 0 150px #D000FE;color:#D000FE;
-color: rgba(255, 255, 255, 0);
-transition: all 600ms ease;
-transition: all 500ms ease;
-cursor: pointer;
+  font-family: 'Yellowtail', cursive;
+  font-size: 100px;
+  text-shadow:0 0 2px #D000FE,0 0 30px #D000FE,0px 0px 5px #D000FE, 0 0 150px #D000FE;color:#D000FE;
+  color: rgba(255, 255, 255, 0);
+  transition: all 600ms ease;
+  transition: all 500ms ease;
+  cursor: pointer;
 }
 .vestiaireNeon:hover {
     color: rgb(61, 149, 231);
@@ -109,7 +109,6 @@ cursor: pointer;
   color: #00aefe;
 }
 .joueur{
-  cursor: pointer;
   background-color: rgba(158, 216, 24, 0.219);
   color: crimson;
 }
@@ -125,6 +124,7 @@ cursor: pointer;
 }
 .headPlayer{
   width: 50%;
+  cursor: pointer;
 }
 .headPlayerCell{
   width: 10%;
@@ -140,13 +140,14 @@ cursor: pointer;
   bottom: 0;
   margin: auto;
   background-color: rgba(0,0,0, 0.5);
+  
 }
 .popup_inner {
   position: absolute;
-  left: 25%;
-  right: 25%;
+  left: 20%;
+  right: 20%;
   top: 25%;
-  bottom: 25%;
+  bottom: 55%;
   margin: auto;
   background: white;
 }
@@ -154,8 +155,6 @@ cursor: pointer;
 .lesStats {
   display: flex;
   justify-content: space-between;
-}
-
-.addRemove{
-  cursor: pointer;
+  align-items:center;
+  font-size: 21px;  
 }
