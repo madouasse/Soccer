@@ -1,0 +1,66 @@
+*{
+    box-sizing: border-box;
+  }
+  .arrow{
+    cursor: pointer;
+    position:absolute;
+    margin-left: 40%;
+    width:100px;
+    height: 100px;
+    border: solid 6px rgb(89, 240, 70);
+    border-radius: 100%;
+    z-index: 1;
+    transition: all .2s linear;
+    &:before, &:after{
+      content:"";
+      position: absolute;
+      width:35%;
+      height: 10%;
+      top:41%;
+      left:55%;
+      background: rgb(11, 54, 243);
+      z-index: 2;
+      transform: translate(-50%, -50%) rotate(45deg);
+      transition: all .2s linear;
+    }
+    
+    &:after{
+      z-index: 3;
+      top:59%;
+      left:55%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+    &:hover{
+      border: solid 8px rgb(241, 174, 48);
+      &:after, &:before{
+        background: rgb(47, 226, 92);
+      }
+    }
+    &:active{
+      border: solid 8px #111;
+      &:after, &:before{
+        background: #111;
+      }
+    }
+  }
+
+.vestiaireBis
+{
+    transform:  translateX(100%);
+    position: absolute;
+    width: 100%;
+    resize: none;
+    height: 100%;
+    min-width: 150vh;
+    min-height: 75vh;
+    background-image: url(./img/soccerTerrain.jpg);
+    background-size: cover;
+    font-family: 'Yellowtail', cursive;
+    font-size: 100px;
+    text-shadow:0 0 2px #D000FE,0 0 30px #D000FE,0px 0px 5px #D000FE, 0 0 150px #D000FE;color:#D000FE;
+    color: rgba(255, 255, 255, 0);
+    .arrow:hover & {
+        transition: all 1.5s ease-in;
+        transform:  translateX(-100%);
+    }
+}

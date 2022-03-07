@@ -1,13 +1,15 @@
 import React from "react";
-import "./Soccer.css";
+import "./Soccer.scss";
 import lesJoueurs from "./configJoueur";
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import Soccer from "./Soccer";
+import Terrain from "./terrain/Terrain";
 import firebase from "firebase";
 import PopupVestiaire from "./popupVestiaire/PopupVestiaire";
-
 import { makeStyles } from '@material-ui/core/styles';
 import { BigHead } from '@bigheads/core'
+import "./Vestiaire.scss"
+import { transform } from "framer-motion";
+import transitions from "@material-ui/core/styles/transitions";
 
 var validation = false;
 var page = "Acceuil"
@@ -29,6 +31,8 @@ const useStyles = makeStyles({
         this.tableDesJoueurs = this.tableDesJoueurs.bind(this);
         this.valideOuNon = this.valideOuNon.bind(this);
         this.togglePopup = this.togglePopup.bind(this);
+        this.checboxJoueur = this.checboxJoueur.bind(this);
+
         this.state = { 
           page: "Acceuil", 
           statJouerTotal: null,
@@ -41,7 +45,11 @@ const useStyles = makeStyles({
           showPopup: false,
           avatarStats:[],
           statsJoueur:null,
-          nomDuJoueur:null
+          nomDuJoueur:null,
+          loading:true,
+          listeDesJoueursValide:[],
+          checked:[],
+          transitions:false
         };
       }
       
@@ -54,6 +62,9 @@ const useStyles = makeStyles({
             this.setState({avatar:terrain})
           })
         })
+          setTimeout(()=> {
+              this.setState({loading:false})
+          },5000);        
       }
 
       togglePopup(lesAvatar, lesStatsDesJoueur, e) {
@@ -71,21 +82,35 @@ const useStyles = makeStyles({
           this.setState({avatarStats:lesAvatar[e.target.viewportElement.id]})
           this.setState({statsJoueur:lesStatsDesJoueur[e.target.viewportElement.id]["stats"]})
           this.setState({nomDuJoueur:Listjoueur[e.target.viewportElement.id]})
-          
         }
-
       }
+
+      checboxJoueur(event)
+      {
+        console.log(" event : ", event)
+        console.log(" event.target.value : ", event.target.value)
+        var updatedList = [...this.state.checked];
+        if (event.target.checked) {
+          updatedList = [...this.state.checked, event.target.id];
+        } else {
+          updatedList.splice(this.state.checked.indexOf(event.target.id), 1);
+        }
+        console.log(" updatedList : d", updatedList, " event.target : ", event.target.id)
+        this.setState({checked : updatedList});
+      };
 
       tableDesJoueurs()
       {
         var lesAvatar =[];
-        var canard = 0
+        var checkBox = [];
+
         if(this.state.avatar != null)
         {
           for(var i=0 ;i < Object.keys(this.state.avatar).length; i++)
           {
             var iu = Object.values(this.state.avatar)[i]["stats"];
             iu = Object.values(iu);
+
             statJouer = [];
                       lesAvatar.push(
                         <BigHead 
@@ -115,13 +140,14 @@ const useStyles = makeStyles({
                           className= "headPlayer">          
                         </BigHead>
                       )
+                      checkBox.push(<input type="checkbox" id={Object.keys(this.state.avatar)[i]} onChange={(e) => {this.checboxJoueur(e)}}></input>)
                       Listjoueur[i] = Object.keys(this.state.avatar)[i];
-            for (var u = 0; u<=iu.length; u++)
+            for (var u = 0; u<iu.length; u++)
                 {
                     statJouer[u]=iu[u];
                 }
                 statJouerTotal[i] = [statJouer]
-                TotalInfoJoueurs[i] = [lesAvatar[i], Listjoueur[i], ... statJouer]   
+                TotalInfoJoueurs[i] = [lesAvatar[i], Listjoueur[i], ... statJouer, checkBox[i]]   
             }
           }
       }
@@ -139,37 +165,65 @@ const useStyles = makeStyles({
               validation = false;
           }          
       }
-      
+
+      onClickNext ()
+      {
+        this.setState({transitions : true})
+        setTimeout(()=> {
+          this.setState({closePage:true})
+        },5000);    
+      }
+
       render() {
         this.tableDesJoueurs(lesJoueurs)
         return(
-            <div className="vestiairePage">
+          <React.StrictMode>
+          <Router>
+              <Route path="/Terrain">
+                  <Terrain id={this.props.id} terrain={this.props.terrain}/>
+              </Route>
+          <div>
+              {this.state.loading && !this.state.closePage &&(
+                <div className="loader">
+                    <div className="bar1"></div>
+                    <div className="bar2"></div>
+                    <div className="bar3"></div>
+                    <div className="bar4"></div>
+                    <div className="bar5"></div>
+                    <div className="bar6"></div>
+                </div>
+              )}
+              {!this.state.loading && !this.state.closePage &&(
+              <div className="vestiairePage">
                 <div className="vestiaireNeon">
                     Vestiaire
                 </div>
-                <div id= "slip" className="JouersVestiaire">Joueurs </div>
-                <table className="Table">
-                    <thead >
-                        <tr className='TableJours'>
-                            <th className= "headPlayerCell"></th>
-                            <th>Joueurs</th>
-                            <th>Buts</th>
-                            <th>Matchs Gagnés</th>
-                            <th>Matchs Perdus</th>
-                            <th>Matchs Joués</th>
-                        </tr>
-                    </thead>
-                    <tbody >
-                    {[... statJouerTotal.keys()].map((level) => (
-                    <tr className="joueur" id={level+"slip"}
-                    >                            
-                    {[... TotalInfoJoueurs[level].keys()].map((row) => (
-                        <td>{TotalInfoJoueurs[(level)][row]}</td>
-                    ))}
-                    </tr>
-                     ))}
-                    </tbody>                
-                </table>
+                <div className="centrage">
+                  <table className="Table">
+                      <thead >
+                          <tr className='TableJours'>
+                              <th className= "headPlayerCell"></th>
+                              <th>Joueurs</th>
+                              <th>Buts</th>
+                              <th>Matchs Perdus</th>
+                              <th>Matchs Gagnés</th>
+                              <th>Matchs Joués</th>
+                              <th>Pret à Jouer</th>
+                          </tr>
+                      </thead>
+                      <tbody >
+                      {[... statJouerTotal.keys()].map((level) => (
+                      <tr className="joueur" id={level+"slip"}
+                      >                            
+                      {[... TotalInfoJoueurs[level].keys()].map((row) => (
+                          <td>{TotalInfoJoueurs[(level)][row]}</td>
+                      ))}
+                      </tr>
+                      ))}
+                      </tbody>                
+                  </table>
+                </div>
+                <Link class="boxhead" to="/Terrain"><span class="arrow" onClick={() => {this.onClickNext()}}><div className="vestiaireBis">ffddddff</div></span></Link>
                 {this.state.showPopup ? 
                   <PopupVestiaire
                     statsDuJoueur={this.state.statsJoueur}
@@ -180,7 +234,10 @@ const useStyles = makeStyles({
                   />
                   : null
                 }
-              </div>
-    )}}
+              </div>)}
 
+          </div>
+          </Router>
+    </React.StrictMode>  
+  )}}
 export default Vestiaire;

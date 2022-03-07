@@ -2,6 +2,7 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import OliveTom from './img/runsoccer.gif';
 import './App.css';
+import "./Login.scss";
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Avatars from "./Avatars";
 import firebase from "firebase";
@@ -18,7 +19,6 @@ class Login extends React.Component {
     this.handleChangeMdp = this.handleChangeMdp.bind(this);
     this.handleChangeMdpCreate = this.handleChangeMdpCreate.bind(this);
     this.handleChangeId = this.handleChangeId.bind(this);
-
     this.state = { 
       mdp: null,
       mdpCreate: null,
@@ -43,6 +43,7 @@ class Login extends React.Component {
       usersPromise.on('value', snapshot => {
         users = snapshot.toJSON()
         this.setState({allIdDB:users})
+        setTimeout(5000)
         this.setState({loading:false})
       })
     })
@@ -57,6 +58,7 @@ class Login extends React.Component {
       })
     })
   }
+
   handleChangeMdp(event) {
     this.setState({mdp : event.target.value});
     this.onClickNextLoginAndValide(this.state.id, event.target.value, true)
@@ -165,13 +167,13 @@ class Login extends React.Component {
       {!this.state.closePage &&(
       <header className="App-header">
       {this.state.loading &&(
-        <div class="loader">
-          <div class="bar1"></div>
-          <div class="bar2"></div>
-          <div class="bar3"></div>
-          <div class="bar4"></div>
-          <div class="bar5"></div>
-          <div class="bar6"></div>
+        <div className="loader">
+          <div className="bar1"></div>
+          <div className="bar2"></div>
+          <div className="bar3"></div>
+          <div className="bar4"></div>
+          <div className="bar5"></div>
+          <div className="bar6"></div>
         </div>
         )}
         {!this.state.loading &&(

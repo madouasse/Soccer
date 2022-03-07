@@ -1,5 +1,5 @@
 import React from "react";
-import "../Soccer.css";
+import "../Soccer.scss";
 import "./popupVestiaire.scss";
 
 import firebase from "firebase";
@@ -19,7 +19,7 @@ class PopupVestiaire extends React.Component {
     ajoutDesStats()
     {
         firebase.database().ref("terrain/"+this.props.terrain + "/"+this.props.nomDuJoueur+"/stats/But").set(this.state.but)
-        firebase.database().ref("terrain/"+this.props.terrain + "/"+this.props.nomDuJoueur+"/stats/MC").set(this.state.mj)
+        firebase.database().ref("terrain/"+this.props.terrain + "/"+this.props.nomDuJoueur+"/stats/MJ").set(this.state.mj)
         firebase.database().ref("terrain/"+this.props.terrain + "/"+this.props.nomDuJoueur+"/stats/MD").set(this.state.mp)
         firebase.database().ref("terrain/"+this.props.terrain + "/"+this.props.nomDuJoueur+"/stats/MG").set(this.state.mg)
         this.props.closePopup()
@@ -34,12 +34,12 @@ class PopupVestiaire extends React.Component {
                 <div className="remove" onClick={()=>{this.setState({but:this.state.but-1})}}>-</div>
                     <div>Les Buts : {this.state.but}</div>
                 <div className="add" onClick={()=>{this.setState({but:this.state.but+1})}}>+</div>
-                <div className="remove" onClick={()=>{this.setState({mg:this.state.mg-1})}}>-</div>
-                    <div>Matchs Gagnés : {this.state.mg}</div>
-                <div className="add" onClick={()=>{this.setState({mg:this.state.mg+1})}}>+</div>
                 <div className="remove" onClick={()=>{this.setState({mp:this.state.mp-1})}}>-</div>
                     <div>Matchs Perdus : {this.state.mp}</div>
                 <div className="add" onClick={()=>{this.setState({mp:this.state.mp+1})}}>+</div>
+                <div className="remove" onClick={()=>{this.setState({mg:this.state.mg-1})}}>-</div>
+                    <div>Matchs Gagnés : {this.state.mg}</div>
+                <div className="add" onClick={()=>{this.setState({mg:this.state.mg+1})}}>+</div>
                 <div className="remove" onClick={()=>{this.setState({mj:this.state.mj-1})}}>-</div>
                     <div>Matchs Joués : {this.state.mj}</div>
                 <div className="add" onClick={()=>{this.setState({mj:this.state.mj+1})}}>+</div>

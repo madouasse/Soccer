@@ -94,14 +94,16 @@ cursor: pointer;
     text-shadow:0 0 6px rgb(61, 149, 231),0 0 50px rgb(61, 149, 231),0px 0px 8px rgb(61, 149, 231), 0 0 180px rgb(61, 149, 231);color:rgb(61, 149, 231);
 }
 .TableJours{
-  margin:auto
+  margin:auto;
+  font-size: 25px;
+  color: rgb(39, 22, 99);
 }
 .Table{
   table-layout: auto;
   width: 75%;
   border-collapse: collapse;
   margin: 25px 0;
-  font-size: 0.9em;
+  font-size: 1.0em;
   font-family: sans-serif;
   min-width: 400px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.418);
@@ -140,7 +142,6 @@ cursor: pointer;
   bottom: 0;
   margin: auto;
   background-color: rgba(0,0,0, 0.5);
-  
 }
 .popup_inner {
   position: absolute;
@@ -150,6 +151,8 @@ cursor: pointer;
   bottom: 55%;
   margin: auto;
   background: white;
+  border-radius: 15%;
+  font-family: "Roboto", sans-serif;
 }
 
 .lesStats {
@@ -157,4 +160,10 @@ cursor: pointer;
   justify-content: space-between;
   align-items:center;
   font-size: 21px;  
+}
+
+.centrage{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

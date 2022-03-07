@@ -64,7 +64,7 @@ class CCTerrain extends React.Component {
       firebase.database().ref("terrain/" + this.state.option + "/" + this.props.id + "/stats/But").set("0")
       firebase.database().ref("terrain/" + this.state.option + "/" + this.props.id + "/stats/MG").set("0")
       firebase.database().ref("terrain/" + this.state.option + "/" + this.props.id + "/stats/MD").set("0")
-      firebase.database().ref("terrain/" + this.state.option + "/" + this.props.id + "/stats/MC").set("0")
+      firebase.database().ref("terrain/" + this.state.option + "/" + this.props.id + "/stats/MJ").set("0")
     }
   }
   handleChangeId(event) {

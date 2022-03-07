@@ -1,7 +1,8 @@
 import React from "react";
-import "./Soccer.css";
+import "./Soccer.scss";
 import lesJoueurs from "./configJoueur";
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import "./Login.scss";
 
 import { makeStyles } from '@material-ui/core/styles';
 import { BigHead } from '@bigheads/core'
@@ -34,18 +35,21 @@ class Soccer extends React.Component {
             imageStatus:false,
             imageStatus2:false,
             imageStatus3:false,
+            loading:true
         };
     }
+    componentWillMount() {
+        setTimeout(()=> {
+            this.setState({loading:false})
+        },3000);        
+    }
 
-      onClickNext (newPage)
+      onClickNext ()
       {
-          if(newPage == "vestiaire")
-          {
-              this.tableDesJoueurs(lesJoueurs)
-          }
-          this.setState({page : newPage})
-          this.setState({closePage : true})
-          page=newPage
+          setTimeout(()=> {
+            this.tableDesJoueurs(lesJoueurs)  
+            this.setState({closePage : true})
+          },2000);
       }
       
       tableDesJoueurs(joueursList)
@@ -89,10 +93,22 @@ class Soccer extends React.Component {
             </Route>
         {!this.state.closePage &&(    
         <header className="App-header">
+            {this.state.loading &&(
+                <div className="fullScreen">
+                    <div className="loader">
+                        <div className="bar1"></div>
+                        <div className="bar2"></div>
+                        <div className="bar3"></div>
+                        <div className="bar4"></div>
+                        <div className="bar5"></div>
+                        <div className="bar6"></div>
+                    </div>
+                </div>
+            )}
             <div className="soccerPage">
-                {this.state.page=="Acceuil" && (<div className='vestiaire' onClick={() => this.onClickNext("vestiaire") }><Link class="boxhead" to="/vestiaire">Vestiaire</Link></div>)}
-                {this.state.page=="Acceuil" && (<div className="terrain" onClick={() => this.onClickNext("terrain")}>Terrain</div>)}
-                {this.state.page=="Acceuil" && (<div className="bus" onClick={() => this.onClickNext("bus")}>Bus</div>)}
+                {this.state.page=="Acceuil" && (<div className='vestiaire' onClick={() => this.onClickNext() }><Link class="boxhead" to="/vestiaire">Vestiaire</Link></div>)}
+                {this.state.page=="Acceuil" && (<div className="terrain" onClick={() => this.onClickNext()}>Terrain</div>)}
+                {this.state.page=="Acceuil" && (<div className="bus" onClick={() => this.onClickNext()}>Bus</div>)}
             </div>
         </header>    
         )}
