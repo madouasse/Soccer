@@ -12,11 +12,11 @@ import { transform } from "framer-motion";
 import transitions from "@material-ui/core/styles/transitions";
 
 var validation = false;
-var page = "Acceuil"
 var Listjoueur = [];
 var statJouer = [];
 var statJouerTotal = [];
 var TotalInfoJoueurs = [];
+var lesAvatar =[];
 const useStyles = makeStyles({
 	table: {
 	  minWidth: 650,
@@ -49,7 +49,8 @@ const useStyles = makeStyles({
           loading:true,
           listeDesJoueursValide:[],
           checked:[],
-          transitions:false
+          transitions:false,
+          listeAvatar:[]
         };
       }
       
@@ -87,30 +88,25 @@ const useStyles = makeStyles({
 
       checboxJoueur(event)
       {
-        console.log(" event : ", event)
-        console.log(" event.target.value : ", event.target.value)
         var updatedList = [...this.state.checked];
         if (event.target.checked) {
           updatedList = [...this.state.checked, event.target.id];
         } else {
           updatedList.splice(this.state.checked.indexOf(event.target.id), 1);
         }
-        console.log(" updatedList : d", updatedList, " event.target : ", event.target.id)
         this.setState({checked : updatedList});
       };
 
       tableDesJoueurs()
       {
-        var lesAvatar =[];
         var checkBox = [];
-
+        lesAvatar =[];
         if(this.state.avatar != null)
         {
           for(var i=0 ;i < Object.keys(this.state.avatar).length; i++)
           {
             var iu = Object.values(this.state.avatar)[i]["stats"];
             iu = Object.values(iu);
-
             statJouer = [];
                       lesAvatar.push(
                         <BigHead 
@@ -169,6 +165,7 @@ const useStyles = makeStyles({
       onClickNext ()
       {
         this.setState({transitions : true})
+        this.setState({listeAvatar : statJouer})
         setTimeout(()=> {
           this.setState({closePage:true})
         },5000);    
@@ -180,7 +177,7 @@ const useStyles = makeStyles({
           <React.StrictMode>
           <Router>
               <Route path="/Terrain">
-                  <Terrain id={this.props.id} terrain={this.props.terrain}/>
+                  <Terrain id={this.props.id} terrain={this.props.terrain} avatar={lesAvatar} nom={this.state.checked}/>
               </Route>
           <div>
               {this.state.loading && !this.state.closePage &&(
@@ -223,7 +220,6 @@ const useStyles = makeStyles({
                       </tbody>                
                   </table>
                 </div>
-                <Link class="boxhead" to="/Terrain"><span class="arrow" onClick={() => {this.onClickNext()}}><div className="vestiaireBis">ffddddff</div></span></Link>
                 {this.state.showPopup ? 
                   <PopupVestiaire
                     statsDuJoueur={this.state.statsJoueur}
@@ -233,9 +229,16 @@ const useStyles = makeStyles({
                     terrain={this.props.terrain}
                   />
                   : null
-                }
-              </div>)}
-
+                }                   
+              </div>             
+              )}
+              {!this.state.loading && !this.state.closePage &&(
+              <span  class="boxheads" to="/Terrain">
+                <Link class="vestiaireBis" to="/Terrain" onClick={() => {this.onClickNext()}}>
+                  <div className="arrow"></div>
+                </Link >
+              </span>   
+              )}
           </div>
           </Router>
     </React.StrictMode>  

@@ -1,0 +1,85 @@
+@keyframes slideInFromLeft {
+    from {
+      transform: translateX(0%) translateY(0%);
+    }
+    to {
+      transform: translateX(-35%) translateY(130%);
+    }
+  }
+
+  @keyframes slideInFromLeft1 {
+    from {
+      transform: translateX(0%)  translateY(0%);
+    }
+    to {
+      transform: translateX(-20%) translateY(260%);
+    }
+  }
+  @keyframes slideInFromLeft2 {
+    from {
+      transform: translateX(0%) translateY(0%);
+    }
+    to {
+      transform: translateX(-20%) translateY(-10%);
+    }
+  }
+    @keyframes slideInFromLeft3 {
+    from {
+      transform: translateX(0%) translateY(0%);
+    }
+    to {
+      transform: translateX(10%) translateY(150%);
+    }
+  }
+
+.terraineBis
+{
+  width: 100%;
+  background-image: url(../img/terrain-football-standard.webp);
+  background-size:cover ;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: 'Yellowtail', cursive;
+  color: rgb(255, 255, 255);
+  min-width: 100vh;
+  min-height: 100vh;
+  font-size: 65px;
+}
+
+.avatarTerrain
+{
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    position: absolute;
+    color: rgb(235, 11, 11);
+    width: 100%;
+    opacity: 1;
+    > .absolute:nth-child(1) {
+        animation: slideInFromLeft ease-out 5s 1s ;
+        animation-fill-mode: forwards;
+    }
+    > .absolute:nth-child(2) {
+        animation: slideInFromLeft1 ease-out 5s 2s  ;
+        animation-fill-mode: forwards;
+    }
+    > .absolute:nth-child(3) {
+        animation: slideInFromLeft2 ease-out 5s 3s;
+        animation-fill-mode: forwards;
+    }
+
+}
+.absolute
+{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 200hv;
+}
+
+.avatarTaille
+{
+    width: 20%;
+}

@@ -6,8 +6,11 @@ import Login from "./Login";
 import TricotAcceuil from "./tricot/tricotAcceuil";
 import firebase from 'firebase';
 import config from "./configBDD/firebaseSoccer";
-
+import Vestiaire from './Vestiaire';
+import Terrain from './terrain/Terrain';
+import Soccer from './Soccer';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+
 class App extends Component {
   
   constructor(props) {
@@ -63,9 +66,22 @@ class App extends Component {
           <Route path="/login">
               <Login />
           </Route>
+          <Route path="/Vestiaire">
+              <Vestiaire />
+          </Route>
+          <Route path="/Terrain">
+              <Terrain />
+          </Route>
+          <Route path="/Terrain">
+              <Terrain />
+          </Route>
+          <Route path="/Soccer">
+              <Soccer />
+          </Route>
           <Route path="/tricotAcceuil">
               <TricotAcceuil />
           </Route>
+
         {!this.state.soccerPage && !this.state.tricotPage &&(
         <header className="App-header">
           <div className="indexChoice">        
