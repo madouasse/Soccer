@@ -8,6 +8,8 @@ import Avatars from "./Avatars";
 import firebase from "firebase";
 import Soccer from "./Soccer";
 import CCTerrain from "./cCTerrain/CCTerrain";
+import App from "./App";
+
 
 class Login extends React.Component {
 
@@ -43,8 +45,9 @@ class Login extends React.Component {
       usersPromise.on('value', snapshot => {
         users = snapshot.toJSON()
         this.setState({allIdDB:users})
-        setTimeout(5000)
-        this.setState({loading:false})
+        setTimeout(()=> {
+            this.setState({loading:false})
+          },2000);
       })
     })
     var avatarPromise = firebase.database().ref("avatar/")
@@ -153,17 +156,16 @@ class Login extends React.Component {
 
     return(
     <React.StrictMode>
-     <Router>
+     <Router basename="/Soccer">
         <Route path="/avatar">
           <Avatars id={this.state.id}/>
         </Route>
-        <Route path="/soccer">
+        <Route path="/TriChoix">
           <Soccer id={this.state.id}/>
         </Route>
         <Route path="/cCTerrain">
           <CCTerrain id={this.state.id}/>
         </Route>
-        
       {!this.state.closePage &&(
       <header className="App-header">
       {this.state.loading &&(
@@ -203,7 +205,7 @@ class Login extends React.Component {
               </div>)}
               {this.state.create &&(
               <div>
-                <button  onClick={()=> this.onClickNextAndValide(this.state.id, this.state.mdp, this.state.mdpCreate, false)}>
+                <button className="creer-btn" onClick={()=> this.onClickNextAndValide(this.state.id, this.state.mdp, this.state.mdpCreate, false)}>
                 {this.state.valideIdMdpBoolean == true  &&(<Link class="boxhead" to="/Avatar"><div>Valider</div></Link>)}
                 {this.state.valideIdMdpBoolean == false &&(<div>Valider</div >)}
                 </button>

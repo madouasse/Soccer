@@ -3,7 +3,7 @@
       transform: translateX(0%) translateY(0%);
     }
     to {
-      transform: translateX(-35%) translateY(130%);
+      transform: translateX(030%) translateY(100%);
     }
   }
 
@@ -12,7 +12,7 @@
       transform: translateX(0%)  translateY(0%);
     }
     to {
-      transform: translateX(-20%) translateY(260%);
+      transform: translateX(100%) translateY(230%);
     }
   }
   @keyframes slideInFromLeft2 {
@@ -20,30 +20,88 @@
       transform: translateX(0%) translateY(0%);
     }
     to {
-      transform: translateX(-20%) translateY(-10%);
+      transform: translateX(100%) translateY(-20%);
     }
   }
-    @keyframes slideInFromLeft3 {
+  @keyframes slideInFromLeft3 {
     from {
       transform: translateX(0%) translateY(0%);
     }
     to {
-      transform: translateX(10%) translateY(150%);
+      transform: translateX(170%) translateY(100%);
+    }
+  }
+  @keyframes slideInFromLeft4 {
+    from {
+      transform: translateX(0%) translateY(0%);
+    }
+    to {
+      transform: translateX(100%) translateY(100%);
+    }
+  }
+  @keyframes slideInFromLeft5 {
+    from {
+      transform: translateX(0%) translateY(0%);
+    }
+    to {
+      transform: translateX(230%) translateY(100%);
+    }
+  }
+  @keyframes slideInFromLeft6 {
+    from {
+      transform: translateX(0%) translateY(0%);
+    }
+    to {
+      transform: translateX(370%) translateY(100%);
+    }
+  }
+  @keyframes slideInFromLeft7 {
+    from {
+      transform: translateX(0%) translateY(0%);
+    }
+    to {
+      transform: translateX(300%) translateY(230%);
+    }
+  }
+  @keyframes slideInFromLeft8 {
+    from {
+      transform: translateX(0%) translateY(0%);
+    }
+    to {
+      transform: translateX(300%) translateY(100%);
+    }
+  }
+  @keyframes slideInFromLeft9 {
+    from {
+      transform: translateX(0%) translateY(0%);
+    }
+    to {
+      transform: translateX(300%) translateY(-20%);
+    }
+  }
+
+  @keyframes carInFromLeft {
+    from {
+      transform: translateX(10%) translateY(0%);
+    }
+    to {
+      transform: translateX(500%) translateY(0%);
     }
   }
 
 .terraineBis
 {
   width: 100%;
+  height: 100%;
   background-image: url(../img/terrain-football-standard.webp);
   background-size:cover ;
   background-repeat: no-repeat;
   background-position: center;
   font-family: 'Yellowtail', cursive;
   color: rgb(255, 255, 255);
-  min-width: 100vh;
   min-height: 100vh;
   font-size: 65px;
+  overflow: hidden;
 }
 
 .avatarTerrain
@@ -52,9 +110,10 @@
     flex-direction: column;
     font-size: 15px;
     position: absolute;
-    color: rgb(235, 11, 11);
-    width: 100%;
+    color: rgb(6, 83, 32);
+    width: 20%;
     opacity: 1;
+
     > .absolute:nth-child(1) {
         animation: slideInFromLeft ease-out 5s 1s ;
         animation-fill-mode: forwards;
@@ -67,7 +126,34 @@
         animation: slideInFromLeft2 ease-out 5s 3s;
         animation-fill-mode: forwards;
     }
-
+    > .absolute:nth-child(4) {
+      animation: slideInFromLeft3 ease-out 5s 3s;
+      animation-fill-mode: forwards;
+    }
+    > .absolute:nth-child(5) {
+      animation: slideInFromLeft4 ease-out 5s 3s;
+      animation-fill-mode: forwards;
+    }
+    > .absolute:nth-child(6) {
+      animation: slideInFromLeft5 ease-out 5s 3s;
+      animation-fill-mode: forwards;
+    }
+    > .absolute:nth-child(7) {
+      animation: slideInFromLeft6 ease-out 5s 3s;
+      animation-fill-mode: forwards;
+    }
+    > .absolute:nth-child(8) {
+      animation: slideInFromLeft7 ease-out 5s 3s;
+      animation-fill-mode: forwards;
+    }
+    > .absolute:nth-child(9) {
+      animation: slideInFromLeft8 ease-out 5s 3s;
+      animation-fill-mode: forwards;
+    }
+    > .absolute:nth-child(10) {
+      animation: slideInFromLeft9 ease-out 5s 3s;
+      animation-fill-mode: forwards;
+    }
 }
 .absolute
 {
@@ -76,10 +162,170 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-width: 200hv;
+    font-size: 35px;
 }
 
-.avatarTaille
+.terrainBis
 {
-    width: 20%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 1%;
+}
+
+.arrowTerrain{
+  display: flex;
+  cursor: pointer;
+  width:100px;
+  height: 100px;
+  border-radius: 100%;
+  justify-content: center;
+  align-items: center;
+  
+  &:before, &:after{
+    content:"";
+    width:35%;
+    height: 10%;
+    top:41%;
+    left:55%;
+    background: rgb(11, 54, 243);
+    z-index: 2;
+    transform: translate(-30%, -90%) rotate(-45deg);
+    transition: all .2s linear;
+  }
+
+  &:after{
+    z-index: 3;
+    top:59%;
+    left:55%;
+    transform: translate(-130%, 90%) rotate(45deg);
+  }
+  &:hover{
+    &:after, &:before{
+      background: rgb(47, 226, 92);
+    }
+  }
+}
+
+.carTerrain
+{
+  display: flex;
+  position: absolute;
+  min-width: 10vh;
+  margin-right: 120%;
+  overflow: hidden;
+  min-height: 10vh;
+  width: 125%;
+  margin-top: 46%;
+}
+.car
+{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.citroen
+{
+  min-width: 10vh;
+  max-height: 5vh;
+  margin-top: 200px;
+  width: 5%;
+}
+.citroen:hover
+{
+  animation: carInFromLeft ease-out 5s 3s;
+  overflow-x: hidden;
+}
+.vSport
+{
+  margin-top: 180px;
+  max-height: 10vh;
+  width: 5%;
+}
+.f1
+{
+  margin-top: 200px;
+  width: 5%;
+}
+.vTresSport
+{
+  margin-top: 180px;
+  max-height: 10vh;
+  width: 5%;
+}
+.arrowParking
+{
+  overflow-x: hidden;
+  display: flex;
+  cursor: pointer;
+  width:100px;
+  height: 100px;
+  border-radius: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5%;
+  &:before, &:after{
+    content:"";
+    width:35%;
+    height: 10%;
+    top:41%;
+    left:55%;
+    background: rgb(243, 162, 11);
+    z-index: 2;
+    transform: translate(30%, -90%) rotate(45deg);
+    transition: all .2s linear;   
+  }
+  &:after{
+    z-index: 3;
+    top:59%;
+    left:55%;
+    transform: translate(-70%, 90%) rotate(-45deg);
+  }
+  &:hover{
+    .citroen
+    {
+      transform: translateX(2050%) ;
+      transition: all 1s linear ;
+      overflow-x: hidden;
+      &:before, &:after{
+        .carTerrain
+        {
+          overflow: hidden;
+        }
+      }
+    }
+    .vSport
+    {
+      transform: translateX(2000%);
+      transition: all 2s linear;
+    }
+    .vTresSport
+    {
+      transform: translateX(2000%);
+      transition: all 2.5s linear;
+    }
+    .f1
+    {
+      transform: translateX(2000%);
+      transition: all 3s linear;
+    }
+    &:after, &:before{
+      background: rgb(47, 214, 226);
+    }
+  }
+}
+.ParkingBis
+{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  overflow: hidden;
+}
+
+.nextPrevious{
+  display: flex;
+  overflow: hidden;
+  justify-content: space-between;
+  margin-top: 17%;
 }

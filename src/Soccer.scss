@@ -68,6 +68,8 @@ cursor: pointer;
   background-size: cover;
   background-position: center;
   position:absolute;
+  min-width: 100vh;
+  overflow: scroll;
 }
 .JouersVestiaire{
   font-family: 'Permanent Marker', cursive;
@@ -88,6 +90,9 @@ cursor: pointer;
   transition: all 600ms ease;
   transition: all 500ms ease;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .vestiaireNeon:hover {
     color: rgb(61, 149, 231);
@@ -163,7 +168,11 @@ cursor: pointer;
 }
 
 .centrage{
+  margin-top: -25px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-size: cover;
+  background-position: center;
+  min-width: 100vh;
 }

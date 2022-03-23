@@ -33,12 +33,6 @@
         background: rgb(47, 226, 92);
       }
     }
-    &:active{
-      border: solid 8px #111;
-      &:after, &:before{
-        background: #111;
-      }
-    }
   }
 .vestiaireBis:hover {
     width: 10%;
@@ -72,6 +66,15 @@
     cursor: pointer;
     min-width: 10vh;
     min-height: 100vh;
-    
   }
 
+  .datePicker
+  {
+    color: rgb(231, 129, 61);
+    text-shadow:none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5%;
+  }

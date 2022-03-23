@@ -1,11 +1,15 @@
 {
-  "homepage": "https://madouasse.github.io/Soccer",
+  "homepage": "https://madouasse.github.io/Soccer/",
   "name": "Soccer",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@bigheads/core": "^0.3.1",
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
     "@material-ui/core": "^4.11.2",
+    "@mui/lab": "^5.0.0-alpha.73",
+    "@mui/material": "^5.5.1",
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
@@ -13,9 +17,11 @@
     "framer-motion": "^3.5.2",
     "link": "^0.1.5",
     "react": "^17.0.1",
+    "react-datepicker": "^4.7.0",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "react-select-datepicker": "^1.1.2",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

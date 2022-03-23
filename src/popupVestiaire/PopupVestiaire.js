@@ -25,7 +25,6 @@ class PopupVestiaire extends React.Component {
         this.props.closePopup()
     }
     render() {
-
       return (
         <div className='popup'>
           <div className='popup_inner'>
@@ -45,7 +44,8 @@ class PopupVestiaire extends React.Component {
                 <div className="add" onClick={()=>{this.setState({mj:this.state.mj+1})}}>+</div>
             </div>
             <div className="avatarButton">
-              {this.props.avatarStats}
+              {this.props.avatarStats
+              }
               <button className="button" onClick={this.ajoutDesStats}>
                 <span></span><span></span><span></span><span></span>
                 Valider

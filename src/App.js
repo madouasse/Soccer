@@ -9,7 +9,8 @@ import config from "./configBDD/firebaseSoccer";
 import Vestiaire from './Vestiaire';
 import Terrain from './terrain/Terrain';
 import Soccer from './Soccer';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import CCTerrain from './cCTerrain/CCTerrain';
+import { BrowserRouter as Router, Route, Routes, Link, Switch} from 'react-router-dom'
 
 class App extends Component {
   
@@ -62,26 +63,27 @@ class App extends Component {
     return (
     <div className="App">
       <React.StrictMode>
-        <Router>
-          <Route path="/login">
+        <Router basename="/Soccer">
+          <Switch>
+            <Route path="/Login">
               <Login />
-          </Route>
-          <Route path="/Vestiaire">
+            </Route>  
+            <Route path="/Vestiaire">
               <Vestiaire />
-          </Route>
-          <Route path="/Terrain">
-              <Terrain />
-          </Route>
-          <Route path="/Terrain">
-              <Terrain />
-          </Route>
-          <Route path="/Soccer">
-              <Soccer />
-          </Route>
-          <Route path="/tricotAcceuil">
+            </Route>  
+            <Route path="/Terrain">
+                <Terrain />
+            </Route>
+            <Route path="/CCTerrain">
+              <CCTerrain/>
+            </Route>
+            <Route path="/TriChoix">
+                <Soccer />
+            </Route>
+            <Route path="/tricotAcceuil">
               <TricotAcceuil />
-          </Route>
-
+            </Route>
+        </Switch>
         {!this.state.soccerPage && !this.state.tricotPage &&(
         <header className="App-header">
           <div className="indexChoice">        
@@ -100,8 +102,8 @@ class App extends Component {
                 </div>
               </div>
             </header>)}
-          </Router>
-        </React.StrictMode>
+            </Router>
+          </React.StrictMode>
       </div>
     );
   }

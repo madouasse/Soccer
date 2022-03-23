@@ -82,8 +82,8 @@ class Avatars extends React.Component {
         var accessories = ["none", "roundGlasses", "tinyGlasses", "shades"]; 
         var index = this.state.accessoryIndex
         sens == "+" ? index=index+1 : index=index-1
-
-        if(index <= 0 && sens == "-" )
+        console.log("index : ", index)
+        if(index < 0 && sens == "-" )
         {
             index=accessories.length-1
         }
@@ -91,6 +91,7 @@ class Avatars extends React.Component {
         {
             index=0
         }
+        console.log("index : ", index)
         this.setState({accessoryIndex : index})
         this.setState({accessory: accessories[index]})
     }
@@ -100,7 +101,7 @@ class Avatars extends React.Component {
         var index = this.state.bodyIndex
         //sens == "+" ? this.setState({bodyIndex : this.state.bodyIndex+1}) : this.setState({bodyIndex : this.state.bodyIndex-1})
         sens == "+" ? index=index+1 : index=index-1
-        if(index <= 0 && sens == "-" )
+        if(index < 0 && sens == "-" )
         {
             index=bodies.length-1
         }
@@ -113,11 +114,12 @@ class Avatars extends React.Component {
     }
     if(setting == "fond")
     {
+        
         var fonds = ["blue", "red"]; 
         var index = this.state.fondIndex
 
         sens == "+" ? index=index+1 : index=index-1
-        if(index <= 0 && sens == "-" )
+        if(index < 0 && sens == "-" )
         {
             index = fonds.length-1
         }
@@ -135,7 +137,7 @@ class Avatars extends React.Component {
 
         sens == "+" ? index=index+1 : index=index-1
 
-        if(index <= 0 && sens == "-" )
+        if(index < 0 && sens == "-" )
         {
             index = clothings.length-1
         }
@@ -152,7 +154,7 @@ class Avatars extends React.Component {
         var index = this.state.clothingColorIndex
 
         sens == "+" ? index=index+1 : index=index-1
-        if(index <= 0 && sens == "-" )
+        if(index < 0 && sens == "-" )
         {
             index = clothingColors.length-1
         }
@@ -169,7 +171,7 @@ class Avatars extends React.Component {
         var index = this.state.eyebrowsIndex
 
         sens == "+" ? index=index+1 : index=index-1
-        if(index <= 0 && sens == "-" )
+        if(index < 0 && sens == "-" )
         {
             index = eyebrowsTable.length-1
         }
@@ -212,7 +214,7 @@ class Avatars extends React.Component {
         var index = this.state.eyesIndex
 
         sens == "+" ? index=index+1 : index=index-1
-        if(index <= 0 && sens == "-" )
+        if(index < 0 && sens == "-" )
         {
             index = eyesTable.length-1
         }
@@ -240,7 +242,7 @@ class Avatars extends React.Component {
         var index = this.state.maskColorIndex
 
         sens == "+" ? index=index+1 : index=index-1
-        if(index <= 0 && sens == "-" )
+        if(index < 0 && sens == "-" )
         {
             index = maskColors.length-1
         }
@@ -258,7 +260,7 @@ class Avatars extends React.Component {
         var index = this.state.facialHairIndex
 
         sens == "+" ? index=index+1 : index=index-1
-        if(index <= 0 && sens == "-" )
+        if(index < 0 && sens == "-" )
         {
             index = facialHairs.length-1
         }
@@ -277,7 +279,7 @@ class Avatars extends React.Component {
         var index = this.state.graphicsIndex
 
         sens == "+" ? index=index+1 : index=index-1
-        if(index <= 0 && sens == "-" )
+        if(index < 0 && sens == "-" )
         {
             index = graphicsTable.length-1
         }
@@ -294,11 +296,11 @@ class Avatars extends React.Component {
         var index = this.state.hairIndex
         sens == "+" ? index=index+1 : index=index-1
         var hairs = ["buzz", "none", "long", "bun", "short", "pixie", "balding", "afro", "bob" ]; 
-        if(index <= 0 && sens == "-" )
+        if(index < 0 && sens == "-" )
         {
             index = hairs.length-1
         }
-        if(index == hairs.length-1 && sens == "+")
+        if(index == hairs.length && sens == "+")
         {
             index = 0
         }
@@ -312,7 +314,7 @@ class Avatars extends React.Component {
         var hairColors = ["blonde", "orange", "black", "white", "brown", "blue", "pink"];
         var index = this.state.hairColorIndex
         sens == "+" ? index=index+1 : index=index-1
-        if(index <= 0 && sens == "-" )
+        if(index < 0 && sens == "-" )
         {
             index = hairColors.length-1
         }
@@ -332,7 +334,7 @@ class Avatars extends React.Component {
         var hats = ["none", "beanie", "turban"]; 
         sens == "+" ? index=index+1 : index=index-1
 
-        if(index <= 0 && sens == "-" )
+        if(index < 0 && sens == "-" )
         {
             index = hats.length-1
         }
@@ -362,7 +364,7 @@ class Avatars extends React.Component {
         var index = this.state.hatColorIndex
         sens == "+" ? index=index+1 : index=index-1
 
-        if(index <= 0 && sens == "-" )
+        if(index < 0 && sens == "-" )
         {
             index = hatColors.length-1
         }
@@ -379,7 +381,7 @@ class Avatars extends React.Component {
         var lipColors = ["turqoise", "red", "purple", "pink", "green"]; 
         var index = this.state.lipColorIndex
         sens == "+" ? index=index+1 : index=index-1
-        if(index <= 0 && sens == "-" )
+        if(index < 0 && sens == "-" )
         {
             index = lipColors.length-1
         }
@@ -392,13 +394,14 @@ class Avatars extends React.Component {
     }
     if(setting == "maskFace")
     {
+         
         if(this.state.maskFace)
         {
-            this.setState({maskFace : !maskFace})
+            this.setState({maskFace : false})
         }
         else if(!this.state.maskFace)
         {
-            this.setState({maskFace : !maskFace})
+            this.setState({maskFace : true})
         }      
     }
 
@@ -408,11 +411,11 @@ class Avatars extends React.Component {
         var index = this.state.boucheIndex
 
         sens == "+" ? index=index+1 : index=index-1
-        if(index <= 0 && sens == "-" )
+        if(index < 0 && sens == "-" )
         {
             index = bouches.length-1
         }
-        if(index == bouches.length-1 && sens == "+")
+        if(index == bouches.length && sens == "+")
         {
             index = 0
         }
@@ -426,11 +429,11 @@ class Avatars extends React.Component {
         var index = this.state.skinToneIndex
 
         sens == "+" ? index=index+1 : index=index-1
-        if(index <= 0 && sens == "-" )
+        if(index < 0 && sens == "-" )
         {
             index = skinTones.length-1
         }
-        if(index == skinTones.length-1 && sens == "+")
+        if(index == skinTones.length && sens == "+")
         {
             index = 0
         }
@@ -442,8 +445,8 @@ class Avatars extends React.Component {
 render() 
 {return(
     <React.StrictMode>
-    <Router>
-       <Route path="/soccer">
+    <Router basename="/Soccer">
+       <Route path="/CCTerrain">
            <CCTerrain id={this.props.id}/>
        </Route>
     {!this.state.closePage &&(

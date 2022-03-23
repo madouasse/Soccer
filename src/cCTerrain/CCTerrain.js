@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Avatars from "../Avatars";
 import firebase from "firebase";
 import Soccer from "../Soccer";
-import "./CCTerrain.css"
+import "./CCTerrain.scss"
 
 class CCTerrain extends React.Component {
 
@@ -65,6 +65,7 @@ class CCTerrain extends React.Component {
       firebase.database().ref("terrain/" + this.state.option + "/" + this.props.id + "/stats/MG").set("0")
       firebase.database().ref("terrain/" + this.state.option + "/" + this.props.id + "/stats/MD").set("0")
       firebase.database().ref("terrain/" + this.state.option + "/" + this.props.id + "/stats/MJ").set("0")
+      firebase.database().ref("terrains/" + this.state.option + "/valide/nom/" + this.props.id).set(this.props.id)
     }
   }
   handleChangeId(event) {
@@ -90,11 +91,24 @@ class CCTerrain extends React.Component {
     {
       var tabJoueur = this.state.infosDuTerrain.toString().split(',')
       var nombreDeJoueurs = tabJoueur.length
-      let itemsJoueurs = [];         
-      for (let i = 0; i < nombreDeJoueurs ; i++) {             
+      let itemsJoueurs = [];
+      let itemsJoueurs2 = []; 
+      let itemsJoueurs3 = [];                  
+                 
+      for (let i = 0; i < nombreDeJoueurs/2 ; i++) {             
         itemsJoueurs.push(<div>{(tabJoueur[i])}<br/></div>);  
       }
-      return itemsJoueurs;
+      for (let i = nombreDeJoueurs/2; i < nombreDeJoueurs ; i++) {             
+        itemsJoueurs2.push(<div className="marginLeftTab">{(tabJoueur[i])}<br/></div>);  
+      }
+      itemsJoueurs3.push(
+        <table>
+          <tr>
+            <td>{itemsJoueurs}</td>
+            <td>{itemsJoueurs2}</td>
+          </tr>
+        </table>)
+      return itemsJoueurs3;
     }
   }
 
@@ -110,8 +124,8 @@ render() {
 
     return(
     <React.StrictMode>
-        <Router>
-           <Route path="/soccer">
+        <Router basename="/Soccer">
+           <Route path="/TriChoix">
              <Soccer id={this.props.id} terrain={this.state.option}/>
            </Route>
            {!this.state.closePage &&(
@@ -129,12 +143,12 @@ render() {
             */}
                 <div className="rejoindre">
                     Choisi ton terrain : 
-                    <select onChange={this.handleChangeOption} placeholder="Entrez votre Id" >
+                    <select onChange={this.handleChangeOption} >
                       {!this.state.selected &&(<option></option>)}   
                       {this.createSelectItems()}         
                     </select>
                     <div className="rejoindreImage" onClick={()=> this.onClickNextAndValide()}>
-                        {this.state.valideIdMdpBoolean == true  &&(<Link class="rejoindreImage" to="/soccer"><div>Entrez</div>
+                        {this.state.valideIdMdpBoolean == true  &&(<Link class="rejoindreImage" to="/TriChoix"><div>Entrez</div>
                       <div class="containerOne">    
                         <div className="centerDoor">
                           <div class="door">
@@ -145,14 +159,12 @@ render() {
                             </div>
                           </div>
                         </div> 
-                        <div class="overlayOne">
-                          <div class="text">
-                            {this.loadInfoDuTerrain()}
-                          </div>
-                        </div>
                       </div> 
                       </Link>)}
                     </div>
+                    <div className="tabJoueur">
+                      {this.loadInfoDuTerrain()}
+                    </div>    
                 </div>
             </div>
             )}

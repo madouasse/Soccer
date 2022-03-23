@@ -3,10 +3,11 @@ import "./Soccer.scss";
 import lesJoueurs from "./configJoueur";
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import "./Login.scss";
-
+import firebase from "firebase";
 import { makeStyles } from '@material-ui/core/styles';
 import { BigHead } from '@bigheads/core'
 import Vestiaire from "./Vestiaire";
+import Terrain from "./terrain/Terrain";
 
 var validation = false;
 var page = "Acceuil"
@@ -14,6 +15,7 @@ var Listjoueur = [];
 var statJouer = [];
 var statJouerTotal = [];
 var TotalInfoJoueurs = [];
+var lesAvatar =[];
 
 const useStyles = makeStyles({
 	table: {
@@ -28,6 +30,7 @@ class Soccer extends React.Component {
         this.onClickNext = this.onClickNext.bind(this);
         this.tableDesJoueurs = this.tableDesJoueurs.bind(this);
         this.valideOuNon = this.valideOuNon.bind(this);
+        this.setAvatar = this.setAvatar.bind(this)
         this.state = { 
             page: "Acceuil", 
             statJouerTotal: null,
@@ -35,13 +38,33 @@ class Soccer extends React.Component {
             imageStatus:false,
             imageStatus2:false,
             imageStatus3:false,
-            loading:true
+            loading:true,
+            avatars:[],
+            noms:[]
         };
     }
     componentWillMount() {
+        var nom = null  
+        var nomsPromise = firebase.database().ref("terrains/"+this.props.terrain + "/valide/nom")
+        firebase.database().ref("terrains/"+this.props.terrain + "/valide/nom").once('value').then(()=> {
+            nomsPromise.on('value', snapshot => {
+            nom = snapshot.toJSON();
+          })
+        })
+        var avatar = null  
+        var avatarsPromise = firebase.database().ref("terrain/"+this.props.terrain )
+        firebase.database().ref("terrains/"+this.props.terrain).once('value').then(()=> {
+            avatarsPromise.on('value', snapshot => {
+            avatar = snapshot.toJSON();
+            this.setState({avatars:avatar})
+          })
+        })
         setTimeout(()=> {
             this.setState({loading:false})
+            this.setState({noms:nom})
+            {this.setAvatar()}
         },3000);        
+
     }
 
       onClickNext ()
@@ -49,9 +72,46 @@ class Soccer extends React.Component {
           setTimeout(()=> {
             this.tableDesJoueurs(lesJoueurs)  
             this.setState({closePage : true})
-          },2000);
+          },4000);
       }
       
+      setAvatar()
+      {
+        if(this.state.avatars!=null && this.state.noms!=null &&this.state.noms[2]!=null)
+        {
+            for(var i=0; i<Object.keys(this.state.noms).length; i++)
+            {
+               lesAvatar.push(
+                    <BigHead 
+                    id={((this.state.noms[i]))}
+                    accessory={this.state.avatars[(this.state.noms[i])]["avatar"][0]}
+                    body={this.state.avatars[(this.state.noms[i])]["avatar"][1]}
+                    circleColor={this.state.avatars[(this.state.noms[i])]["avatar"][2]}
+                    clothing={this.state.avatars[(this.state.noms[i])]["avatar"][3]}
+                    clothingColor={this.state.avatars[(this.state.noms[i])]["avatar"][4]}
+                    eyebrows={this.state.avatars[(this.state.noms[i])]["avatar"][5]}
+                    eyes={this.state.avatars[(this.state.noms[i])]["avatar"][6]}
+                    faceMask={this.state.avatars[(this.state.noms[i])]["avatar"][7]}
+                    faceMaskColor={this.state.avatars[(this.state.noms[i])]["avatar"][8]}
+                    facialHair={this.state.avatars[(this.state.noms[i])]["avatar"][9]}
+                    fbclid="IwAR3L_E-ylO1QQaHpgAaMkwxcRbvIET3MNj3GJvJ9Wx9wV5zwfE3IkDWV2uM"
+                    graphic={this.state.avatars[(this.state.noms[i])]["avatar"][10]}
+                    hair={this.state.avatars[(this.state.noms[i])]["avatar"][11]}
+                    hairColor={this.state.avatars[(this.state.noms[i])]["avatar"][12]}
+                    hat={this.state.avatars[(this.state.noms[i])]["avatar"][13]}
+                    hatColor={this.state.avatars[(this.state.noms[i])]["avatar"][14]}
+                    lashes = {this.state.avatars[(this.state.noms[i])]["avatar"][15]}
+                    lipColor={this.state.avatars[(this.state.noms[i])]["avatar"][16]}
+                    mask={this.state.avatars[(this.state.noms[i])]["avatar"][17]}
+                    mouth={this.state.avatars[(this.state.noms[i])]["avatar"][18]}
+                    skinTone={this.state.avatars[(this.state.noms[i])]["avatar"][19]}
+                    className= "headPlayer">          
+                    </BigHead>
+                )            
+            }
+        }
+      }
+
       tableDesJoueurs(joueursList)
       {
         for(var i=0 ;i < Object.keys(joueursList).length; i++)
@@ -81,15 +141,17 @@ class Soccer extends React.Component {
               document.getElementById(level+"slip").setAttribute("class" ,"joueur");
               validation = false;
           }
-          
       }
 
       render() {
         return(
     <React.StrictMode>
-        <Router>
+        <Router basename="/Soccer">
             <Route path="/Vestiaire">
-                <Vestiaire id={this.props.id} terrain={this.props.terrain}/>
+                <Vestiaire id={this.props.id} terrain={this.props.terrain} nom={this.state.noms}/>
+            </Route>
+            <Route path="/Terrain">
+                <Terrain  id={this.props.id} terrain={this.props.terrain} avatar={lesAvatar} nom={this.state.noms} />
             </Route>
         {!this.state.closePage &&(    
         <header className="App-header">
@@ -107,7 +169,7 @@ class Soccer extends React.Component {
             )}
             <div className="soccerPage">
                 {this.state.page=="Acceuil" && (<div className='vestiaire' onClick={() => this.onClickNext() }><Link class="boxhead" to="/vestiaire">Vestiaire</Link></div>)}
-                {this.state.page=="Acceuil" && (<div className="terrain" onClick={() => this.onClickNext()}>Terrain</div>)}
+                {this.state.page=="Acceuil" && (<div className="terrain" onClick={() => this.onClickNext()}><Link class="boxhead" to="/terrain">Terrain</Link></div>)}
                 {this.state.page=="Acceuil" && (<div className="bus" onClick={() => this.onClickNext()}>Bus</div>)}
             </div>
         </header>    

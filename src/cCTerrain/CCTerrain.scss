@@ -40,7 +40,7 @@
     text-shadow:0 0 6px rgb(231, 152, 61),0 0 50px rgb(231, 138, 61),0px 0px 8px rgb(231, 191, 61), 0 0 180px rgb(231, 214, 61);color:rgb(231, 228, 61);
 }
 .rejoindreImagePorte {
-    min-height: 75vh;
+    min-height: 30vh;
     width: 50%;
     height: 50%;
     background-image: url(../img/door.png);
@@ -50,7 +50,7 @@
     margin-right: auto;
 }
 .rejoindreImagePorte:hover {
-    min-height: 75vh;
+    min-height: 30vh;
     background-image: url(../img/open-door.png);
     background-size: cover;
     background-position: center;
@@ -275,7 +275,7 @@ La porte
     position: relative;
     width: 320px;
     margin-left:35%;
-    min-height: 70vh;
+    min-height: 30vh;
   }
   .image {
     display: block;
@@ -301,11 +301,13 @@ La porte
     color: white;
     font-size: 30px;
     position: absolute;
-    top: 43%;
-    left: 50%;
+    top: 100%;
+    left: 145%;
     transform: translate(-95%, -95%);
     white-space: nowrap;
     margin-right: 25%;
+    min-height: 35vh;
+    min-width: 50vh;
   }
   
   .read {
@@ -340,3 +342,12 @@ La porte
     transform: rotate(-45deg);
     transition: .3s;
   }
+  .tabJoueur {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+.marginLeftTab
+{
+  margin-left:40px; 
+}
